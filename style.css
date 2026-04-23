@@ -452,9 +452,9 @@ button {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(10,10,10,0.5) 0%,
-    rgba(10,10,10,0.3) 40%,
-    rgba(10,10,10,0.75) 100%
+    rgba(5,5,5,0.72) 0%,
+    rgba(5,5,5,0.60) 40%,
+    rgba(5,5,5,0.88) 100%
   );
 }
 
@@ -526,21 +526,20 @@ button {
   width: 48px;
 }
 
-/* Hero reveal animations */
-.slide.active .slide-eyebrow,
-.slide.active .slide-headline,
-.slide.active .slide-sub,
-.slide.active .slide-btns {
-  animation: slideUp 0.8s ease forwards;
+/* Hero text fade in when slide becomes active, fade out when leaving */
+.slide-text-anim {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
-.slide.active .slide-headline { animation-delay: 0.1s; }
-.slide.active .slide-sub { animation-delay: 0.2s; }
-.slide.active .slide-btns { animation-delay: 0.3s; }
 
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+.slide.active .slide-text-anim { opacity: 1; transform: translateY(0); }
+.slide.active .slide-content .slide-eyebrow  { transition-delay: 0.15s; }
+.slide.active .slide-content .slide-headline { transition-delay: 0.28s; }
+.slide.active .slide-content .slide-sub      { transition-delay: 0.40s; }
+.slide.active .slide-content .slide-btns     { transition-delay: 0.52s; }
+
+/* Remove the old keyframe-based animation */
 
 /* ============================================================
    PROOF BAR
@@ -1705,8 +1704,100 @@ a.contact-row:hover { color: var(--gold); }
 .float-backtop:hover { background: var(--surface); border-color: rgba(255,255,255,0.15); }
 
 /* ============================================================
-   RESPONSIVE — TABLET 768px
+   FAQ SECTION
    ============================================================ */
+.faq-section {
+  padding: clamp(64px, 10vw, 120px) 0;
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-item:last-child { border-bottom: none; }
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 28px;
+  background: var(--surface);
+  text-align: left;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  min-height: 64px;
+}
+.faq-question:hover { background: var(--surface-2); color: var(--gold); }
+.faq-question[aria-expanded="true"] {
+  background: var(--surface-2);
+  color: var(--gold);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  position: relative;
+  transition: border-color var(--transition), transform var(--transition);
+}
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.faq-icon::before { width: 8px; height: 1.5px; }
+.faq-icon::after  { width: 1.5px; height: 8px; }
+
+.faq-question[aria-expanded="true"] .faq-icon {
+  border-color: var(--gold);
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease;
+  background: var(--surface-2);
+  padding: 0 28px;
+}
+.faq-answer.open {
+  max-height: 300px;
+  padding: 0 28px 24px;
+}
+.faq-answer p {
+  font-size: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.faq-answer strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
+
+
 @media (min-width: 768px) {
 
   :root { --pad-x: 32px; }

@@ -141,28 +141,67 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
   let timer = null;
   const INTERVAL = 5500;
 
-  function goTo(index) {
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    dots[current].setAttribute('aria-selected', 'false');
-    current = index;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-    dots[current].setAttribute('aria-selected', 'true');
+  function resetTextAnim(slide) {
+    slide.querySelectorAll('.slide-text-anim').forEach(el => {
+      el.style.transition = 'none';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+    });
   }
 
-  function next() {
-    goTo((current + 1) % slides.length);
+  function goTo(index) {
+    // Fade out current
+    const leaving = slides[current];
+    leaving.querySelectorAll('.slide-text-anim').forEach(el => {
+      el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      el.style.transitionDelay = '0s';
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(-12px)';
+    });
+
+    setTimeout(() => {
+      leaving.classList.remove('active');
+      dots[current].classList.remove('active');
+      dots[current].setAttribute('aria-selected', 'false');
+
+      current = index;
+      const entering = slides[current];
+      resetTextAnim(entering);
+      entering.classList.add('active');
+      dots[current].classList.add('active');
+      dots[current].setAttribute('aria-selected', 'true');
+
+      // Force reflow then animate in
+      entering.querySelectorAll('.slide-text-anim').forEach((el, i) => {
+        void el.offsetWidth;
+        const delays = [0.15, 0.28, 0.40, 0.52];
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transitionDelay = (delays[i] || 0.15) + 's';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+    }, 380);
   }
+
+  function next() { goTo((current + 1) % slides.length); }
 
   function startAuto() {
     clearInterval(timer);
     timer = setInterval(next, INTERVAL);
   }
 
+  // Init first slide text
+  slides[0].querySelectorAll('.slide-text-anim').forEach((el, i) => {
+    const delays = [0.15, 0.28, 0.40, 0.52];
+    el.style.transitionDelay = (delays[i] || 0.15) + 's';
+    el.style.opacity = '1';
+    el.style.transform = 'translateY(0)';
+  });
+
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
       const idx = parseInt(dot.dataset.index, 10);
+      if (idx === current) return;
       goTo(idx);
       startAuto();
     });
@@ -523,8 +562,37 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
 
 /* ============================================================
-   SMOOTH SCROLL FOR ANCHOR LINKS
+   FAQ ACCORDION
    ============================================================ */
+(function initFaq() {
+  const items = $$('.faq-item');
+  if (!items.length) return;
+
+  items.forEach(item => {
+    const btn = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    if (!btn || !answer) return;
+
+    btn.addEventListener('click', () => {
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+
+      // Close all others
+      items.forEach(other => {
+        const ob = other.querySelector('.faq-question');
+        const oa = other.querySelector('.faq-answer');
+        if (ob && oa && ob !== btn) {
+          ob.setAttribute('aria-expanded', 'false');
+          oa.classList.remove('open');
+        }
+      });
+
+      // Toggle this one
+      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      answer.classList.toggle('open', !isOpen);
+    });
+  });
+})();
+
 (function initSmoothScroll() {
   document.addEventListener('click', e => {
     const link = e.target.closest('a[href^="#"]');
