@@ -3,383 +3,793 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Order AG Mystique Hair Solutions — Payment on Delivery. Delivered within 1–7 days across Nigeria." />
-  <title>Order — AG Mystique Hair Solutions</title>
+  <meta name="description" content="Order AG Mystique Hair Solutions — Pay on delivery. Free delivery on 2-bottle orders. Arrives within 1–9 days." />
+  <title>Place Your Order — AG Mystique Hair Solutions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="order.css" />
+  <style>
+    :root {
+      --bg:         #0a0a0a;
+      --surface:    #111111;
+      --surface-2:  #181818;
+      --border:     rgba(255,255,255,0.08);
+      --white:      #ffffff;
+      --muted:      rgba(255,255,255,0.45);
+      --muted-2:    rgba(255,255,255,0.22);
+      --green:      #25D366;
+      --green-dark: #1db954;
+      --gold:       #c9a96e;
+      --gold-soft:  rgba(201,169,110,0.11);
+      --error:      #ff5c5c;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+      --pill:       100px;
+      --card:       16px;
+      --sm:         10px;
+      --ease:       0.3s cubic-bezier(0.4,0,0.2,1);
+      --nav-h:      68px;
+      --px:         20px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { background: none; border: none; cursor: pointer; font-family: inherit; color: inherit; }
+
+    /* NAV */
+    .order-nav {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--nav-h);
+      background: rgba(10,10,10,0.93);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: var(--nav-h);
+      padding: 0 var(--px);
+      max-width: 1160px; margin: 0 auto;
+    }
+    .nav-logo { display: flex; flex-direction: column; line-height: 1; }
+    .logo-main { font-family: var(--font-serif); font-size: 20px; font-weight: 500; }
+    .logo-sub  { font-size: 8.5px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-top: 2px; }
+    .nav-secure {
+      display: none;
+      align-items: center; gap: 6px;
+      font-size: 12px; color: var(--muted);
+    }
+    .nav-back {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      transition: color var(--ease);
+    }
+    .nav-back:hover { color: var(--white); }
+    .nav-back:hover svg { transform: translateX(-3px); }
+    .nav-back svg { transition: transform var(--ease); }
+
+    /* LAYOUT */
+    .order-page {
+      max-width: 1160px; margin: 0 auto;
+      padding: clamp(32px,6vw,64px) var(--px) clamp(48px,8vw,80px);
+    }
+
+    /* PAGE HEADER */
+    .page-header { text-align: center; margin-bottom: clamp(28px,5vw,48px); animation: fadeUp .6s ease both; }
+    .page-eyebrow { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .page-title { font-family: var(--font-serif); font-size: clamp(2rem,6vw,3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 10px; }
+    .page-title em { font-style: italic; color: var(--gold); }
+    .page-sub { font-size: 15px; color: var(--muted); max-width: 440px; margin: 0 auto; }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px;
+      margin-bottom: clamp(28px,5vw,48px);
+      animation: fadeUp .6s .1s ease both;
+    }
+    .trust-item {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500; letter-spacing: .04em; color: var(--muted);
+      padding: 6px 14px;
+      border: 1px solid var(--border); border-radius: var(--pill);
+    }
+    .trust-item svg { color: var(--gold); flex-shrink: 0; }
+
+    /* TWO-COL GRID */
+    .order-layout { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start; }
+
+    /* SECTION CARDS */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--card);
+      overflow: hidden;
+      animation: fadeUp .6s .15s ease both;
+    }
+    .section-card.delay-2 { animation-delay: .22s; }
+
+    .card-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .card-step {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--gold); color: #0a0a0a;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .card-title { font-family: var(--font-serif); font-size: clamp(1.05rem,2.5vw,1.3rem); font-weight: 500; }
+    .card-body  { padding: 22px 24px; }
+
+    /* PRODUCT OPTIONS */
+    .product-options { display: flex; flex-direction: column; gap: 12px; }
+
+    .product-option { position: relative; cursor: pointer; display: block; }
+    .product-option input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+
+    .product-option-inner {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--sm);
+      background: var(--surface-2);
+      transition: border-color var(--ease), background var(--ease);
+    }
+    .product-option input:checked + .product-option-inner {
+      border-color: var(--gold);
+      background: rgba(201,169,110,0.06);
+    }
+    .product-option-inner:hover { border-color: rgba(201,169,110,0.35); }
+
+    .opt-img-wrap { width: 76px; height: 96px; border-radius: 8px; overflow: hidden; background: var(--surface); flex-shrink: 0; }
+    .opt-img { width: 100%; height: 100%; object-fit: cover; }
+
+    .opt-details { flex: 1; min-width: 0; }
+    .opt-name { font-family: var(--font-serif); font-size: clamp(.95rem,2.5vw,1.15rem); font-weight: 500; margin-bottom: 4px; }
+    .opt-desc { font-size: 13px; color: var(--muted); line-height: 1.45; margin-bottom: 8px; }
+    .opt-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .opt-tag {
+      display: inline-flex; align-items: center;
+      padding: 3px 10px; border-radius: var(--pill);
+      font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    }
+    .tag-pop  { background: var(--gold); color: #0a0a0a; }
+    .tag-save { background: rgba(37,211,102,.14); color: var(--green); border: 1px solid rgba(37,211,102,.25); }
+    .tag-unit { background: rgba(255,255,255,.07); color: var(--muted); border: 1px solid var(--border); }
+
+    .opt-price-col { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; margin-top: 8px; }
+    .opt-price     { font-family: var(--font-serif); font-size: clamp(1.2rem,3vw,1.5rem); font-weight: 500; white-space: nowrap; }
+    .opt-price-was { font-size: 12px; color: var(--muted-2); text-decoration: line-through; }
+
+    /* Radio ring */
+    .opt-ring {
+      position: absolute; top: 14px; right: 14px;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color var(--ease);
+      flex-shrink: 0;
+    }
+    .opt-ring::after {
+      content: ''; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); opacity: 0;
+      transition: opacity var(--ease), transform var(--ease); transform: scale(.5);
+    }
+    .product-option input:checked ~ .opt-ring { border-color: var(--gold); }
+    .product-option input:checked ~ .opt-ring::after { opacity: 1; transform: scale(1); }
+
+    /* QTY */
+    .qty-row {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.05);
+      flex-wrap: wrap; gap: 10px;
+    }
+    .qty-label { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .qty-controls {
+      display: flex; align-items: center;
+      border: 1px solid var(--border); border-radius: var(--pill);
+      overflow: hidden; background: var(--surface-2);
+    }
+    .qty-btn {
+      width: 40px; height: 40px; font-size: 18px; font-weight: 300;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--ease); color: var(--white);
+    }
+    .qty-btn:hover { background: rgba(255,255,255,.06); }
+    .qty-btn:active { transform: scale(.9); }
+    .qty-num {
+      min-width: 38px; text-align: center;
+      font-family: var(--font-serif); font-size: 1.15rem; font-weight: 500;
+      border-left: 1px solid var(--border); border-right: 1px solid var(--border);
+      line-height: 40px;
+    }
+
+    /* ORDER SUMMARY */
+    .sum-lines { display: flex; flex-direction: column; gap: 11px; margin-bottom: 18px; }
+    .sum-line  { display: flex; justify-content: space-between; align-items: center; font-size: 14px; color: var(--muted); gap: 8px; }
+    .sum-line .lv { font-weight: 600; color: var(--white); }
+    .sum-total {
+      padding-top: 14px; border-top: 1px solid var(--border);
+      font-size: 15px; font-weight: 600; color: var(--white);
+    }
+    .sum-total .lv { font-family: var(--font-serif); font-size: 1.5rem; color: var(--gold); }
+    .sum-note {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 13px; border-radius: var(--sm);
+      background: rgba(37,211,102,.07); border: 1px solid rgba(37,211,102,.18);
+      font-size: 13px; color: rgba(255,255,255,.7); line-height: 1.55;
+    }
+    .sum-note svg { color: var(--green); flex-shrink: 0; margin-top: 1px; }
+    .sum-note strong { color: rgba(255,255,255,.9); }
+
+    /* FORM */
+    .form-fields { display: flex; flex-direction: column; gap: 16px; }
+    .form-group  { display: flex; flex-direction: column; gap: 6px; }
+    .form-label  { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .form-label .req { color: var(--error); margin-left: 2px; }
+    .form-input, .form-textarea, .form-select {
+      background: var(--surface-2); border: 1.5px solid var(--border);
+      border-radius: var(--sm); color: var(--white);
+      font-family: var(--font-sans); font-size: 15px;
+      padding: 13px 15px; width: 100%; min-height: 50px;
+      -webkit-appearance: none; appearance: none;
+      transition: border-color var(--ease), box-shadow var(--ease);
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none; border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,169,110,.12);
+    }
+    .form-input.err, .form-textarea.err, .form-select.err { border-color: var(--error); }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--muted-2); }
+    .form-textarea { resize: vertical; min-height: 88px; }
+    .form-select { cursor: pointer; }
+    .form-select option { background: #1a1a1a; color: var(--white); }
+    .input-hint { font-size: 12px; color: var(--muted-2); font-style: italic; }
+    .ferr { font-size: 12px; color: var(--error); display: none; }
+    .ferr.on { display: block; }
+
+    /* SUBMIT */
+    .btn-submit {
+      width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 17px 28px; border-radius: var(--pill);
+      background: var(--green); color: var(--white);
+      font-family: var(--font-sans); font-size: 14px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      border: none; cursor: pointer; min-height: 56px;
+      transition: background var(--ease), transform .15s ease;
+      margin-top: 6px;
+    }
+    .btn-submit:hover { background: var(--green-dark); }
+    .btn-submit:active { transform: scale(.97); }
+    .btn-submit:disabled { opacity: .75; cursor: not-allowed; }
+    .submit-note {
+      margin-top: 10px; text-align: center;
+      font-size: 12px; color: var(--muted-2); line-height: 1.55;
+    }
+
+    /* DELIVERY CARD */
+    .delivery-card {
+      background: var(--gold-soft); border: 1px solid rgba(201,169,110,.2);
+      border-radius: var(--card); padding: 22px;
+      animation: fadeUp .6s .28s ease both;
+    }
+    .delivery-title {
+      font-family: var(--font-serif); font-size: 1.1rem; font-weight: 500; color: var(--gold);
+      display: flex; align-items: center; gap: 8px; margin-bottom: 16px;
+    }
+    .del-steps { display: flex; flex-direction: column; gap: 13px; }
+    .del-step  { display: flex; align-items: flex-start; gap: 11px; }
+    .del-num   {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--gold); color: #0a0a0a;
+      font-size: 11px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .del-text { font-size: 14px; color: rgba(255,255,255,.68); line-height: 1.55; }
+    .del-text strong { color: rgba(255,255,255,.9); font-weight: 600; }
+
+    /* FOOTER */
+    .order-footer { border-top: 1px solid var(--border); padding: clamp(28px,5vw,48px) var(--px); max-width: 1160px; margin: 0 auto; }
+    .footer-inner { display: flex; flex-direction: column; gap: 20px; }
+    .footer-top   { display: flex; flex-direction: column; gap: 18px; }
+    .footer-brand { display: flex; flex-direction: column; gap: 10px; }
+    .footer-desc  { font-size: 13px; color: var(--muted); max-width: 250px; line-height: 1.6; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+    .footer-link  { font-size: 13px; color: var(--muted); transition: color var(--ease); }
+    .footer-link:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid var(--border); padding-top: 18px;
+      display: flex; flex-direction: column; gap: 5px; text-align: center;
+    }
+    .footer-copy { font-size: 12px; color: var(--muted-2); }
+    .footer-pay  { font-size: 12px; color: var(--muted-2); display: flex; align-items: center; justify-content: center; gap: 5px; }
+    .footer-pay svg { color: var(--green); }
+
+    /* ANIMATE */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (min-width: 600px) {
+      .product-option-inner { grid-template-columns: 92px 1fr; }
+      .opt-img-wrap { width: 92px; height: 112px; }
+      .opt-price-col { flex-direction: row; align-items: center; gap: 10px; margin-top: 0; }
+    }
+    @media (min-width: 768px) {
+      :root { --px: 32px; }
+      .nav-secure { display: flex; }
+      .footer-top { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+      .footer-bottom { flex-direction: row; justify-content: space-between; text-align: left; }
+    }
+    @media (min-width: 960px) {
+      :root { --px: 40px; }
+      .order-layout { grid-template-columns: 1fr 370px; }
+    }
+    @media (min-width: 1100px) { :root { --px: 48px; } }
+
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
 </head>
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar">
+  <nav class="order-nav" role="navigation" aria-label="Order page navigation">
     <div class="nav-inner">
-      <a href="index.html" class="nav-logo" aria-label="Back to AG Mystique Home">
+      <a href="index.html" class="nav-logo" aria-label="AG Mystique Hair Solutions — Home">
         <span class="logo-main">AG Mystique</span>
         <span class="logo-sub">Hair Solutions</span>
       </a>
-      <a href="index.html" class="btn btn-ghost nav-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+      <span class="nav-secure" aria-label="Payment on delivery — no upfront payment">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="14" height="14" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Pay on Delivery — No Upfront Payment
+      </span>
+      <a href="index.html" class="nav-back" aria-label="Back to home page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
         Back to Home
       </a>
     </div>
   </nav>
 
-  <main class="order-main">
-    <div class="order-container">
+  <main>
+    <div class="order-page">
 
-      <!-- PAGE HEADER -->
-      <div class="order-header">
-        <span class="section-eyebrow">Secure Order</span>
-        <h1 class="order-title">Place Your <em>Order</em></h1>
-        <p class="order-subtitle">Fill in your details below. Pay only when your order arrives — no upfront payment required.</p>
+      <!-- HEADER -->
+      <div class="page-header">
+        <span class="page-eyebrow">Secure Order</span>
+        <h1 class="page-title">Place Your <em>Order</em></h1>
+        <p class="page-sub">Fill in your details and we will deliver to your door. You pay only when it arrives.</p>
       </div>
 
-      <!-- TRUST STRIP -->
-      <div class="trust-strip">
-        <div class="trust-item">
-          <span class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </span>
-          <span>Payment on Delivery</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          </span>
-          <span>Delivered in 1–7 Days</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-          </span>
-          <span>2,400+ Happy Customers</span>
-        </div>
-        <div class="trust-item">
-          <span class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </span>
-          <span>Nationwide Delivery</span>
-        </div>
+      <!-- TRUST BAR -->
+      <div class="trust-strip" role="list">
+        <span class="trust-item" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Pay on Delivery
+        </span>
+        <span class="trust-item" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4a2 2 0 012 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-2"/><circle cx="11.5" cy="18.5" r="1.5"/><circle cx="20.5" cy="18.5" r="1.5"/></svg>
+          Delivers in 1–9 Days
+        </span>
+        <span class="trust-item" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          100% Natural Ingredients
+        </span>
+        <span class="trust-item" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          2,400+ Happy Customers
+        </span>
       </div>
 
+      <!-- MAIN GRID -->
       <div class="order-layout">
 
-        <!-- LEFT: PRODUCT SELECTOR -->
+        <!-- ═══ LEFT COL: STEP 1 + STEP 2 ═══ -->
         <div class="order-left">
-          <div class="order-card">
-            <h2 class="card-title">Choose Your <em>Package</em></h2>
 
-            <!-- Product Option 1 -->
-            <label class="product-option" id="option-1-label">
-              <input type="radio" name="product" value="1" id="opt-1" class="product-radio" checked />
-              <div class="product-option-inner">
-                <div class="product-img-col">
-                  <img
-                    src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=400&q=80&auto=format&fit=crop"
-                    alt="AG Mystique Original — 1 Bottle"
-                    class="product-thumb"
-                    loading="lazy"
-                  />
-                  <span class="qty-badge" id="qty-badge-1">×1</span>
-                </div>
-                <div class="product-details">
-                  <div class="product-option-top">
-                    <div>
-                      <span class="product-option-name">1 Bottle</span>
-                      <span class="product-option-sub">AG Mystique Original</span>
+          <!-- STEP 1: CHOOSE PRODUCT -->
+          <div class="section-card" style="margin-bottom:20px;">
+            <div class="card-header">
+              <span class="card-step">1</span>
+              <h2 class="card-title">Choose Your Package</h2>
+            </div>
+            <div class="card-body">
+              <div class="product-options" role="radiogroup" aria-label="Select a package">
+
+                <!-- 1 Bottle -->
+                <label class="product-option">
+                  <input type="radio" name="pkg" value="1b" data-price="18000" data-label="AG Mystique Hair Oil — 1 Bottle" />
+                  <div class="product-option-inner">
+                    <div class="opt-img-wrap">
+                      <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=200&q=80&auto=format&fit=crop" alt="AG Mystique Original — 1 Bottle" class="opt-img" loading="lazy" />
                     </div>
-                    <div class="radio-check" aria-hidden="true"></div>
-                  </div>
-                  <div class="product-option-price">
-                    <span class="price-main">₦18,000</span>
-                  </div>
-                  <ul class="product-option-perks">
-                    <li>Full 60ml bottle</li>
-                    <li>Free application guide</li>
-                    <li>WhatsApp support included</li>
-                  </ul>
-                </div>
-              </div>
-            </label>
-
-            <!-- Product Option 2 -->
-            <label class="product-option product-option--featured" id="option-2-label">
-              <input type="radio" name="product" value="2" id="opt-2" class="product-radio" />
-              <div class="product-option-inner">
-                <div class="product-img-col">
-                  <img
-                    src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=400&q=80&auto=format&fit=crop"
-                    alt="AG Mystique — 2 Bottle Bundle"
-                    class="product-thumb"
-                    loading="lazy"
-                  />
-                  <span class="qty-badge" id="qty-badge-2">×2</span>
-                </div>
-                <div class="product-details">
-                  <div class="product-option-top">
-                    <div>
-                      <span class="product-option-name">2 Bottles</span>
-                      <span class="product-option-sub">Best Value Bundle</span>
+                    <div class="opt-details">
+                      <div class="opt-name">1 Bottle</div>
+                      <div class="opt-desc">AG Mystique Original formula. Full 60ml — a complete 30-day treatment to nourish follicles and reduce breakage.</div>
+                      <div class="opt-tags">
+                        <span class="opt-tag tag-unit">1-Month Supply</span>
+                        <span class="opt-tag tag-unit">60ml</span>
+                      </div>
+                      <div class="opt-price-col">
+                        <div class="opt-price">₦18,000</div>
+                      </div>
                     </div>
-                    <div class="radio-check" aria-hidden="true"></div>
                   </div>
-                  <div class="product-option-price">
-                    <span class="price-main">₦30,000</span>
-                    <span class="price-was">₦36,000</span>
-                    <span class="price-save">Save ₦6,000</span>
+                  <div class="opt-ring" aria-hidden="true"></div>
+                </label>
+
+                <!-- 2 Bottles (default selected) -->
+                <label class="product-option">
+                  <input type="radio" name="pkg" value="2b" data-price="30000" data-label="AG Mystique Hair Oil — 2 Bottles Bundle" checked />
+                  <div class="product-option-inner">
+                    <div class="opt-img-wrap">
+                      <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&q=80&auto=format&fit=crop" alt="AG Mystique — 2 Bottle Bundle" class="opt-img" loading="lazy" />
+                    </div>
+                    <div class="opt-details">
+                      <div class="opt-name">2 Bottles Bundle</div>
+                      <div class="opt-desc">Best value. Two full 60ml bottles for a complete 60-day hair growth journey. Free delivery included.</div>
+                      <div class="opt-tags">
+                        <span class="opt-tag tag-pop">Most Popular</span>
+                        <span class="opt-tag tag-save">Save ₦6,000</span>
+                        <span class="opt-tag tag-unit">Free Delivery</span>
+                      </div>
+                      <div class="opt-price-col">
+                        <div class="opt-price">₦30,000</div>
+                        <div class="opt-price-was">₦36,000</div>
+                      </div>
+                    </div>
                   </div>
-                  <ul class="product-option-perks">
-                    <li>Two full 60ml bottles</li>
-                    <li>Free delivery included</li>
-                    <li>Priority WhatsApp support</li>
-                    <li>60-day hair growth plan</li>
-                  </ul>
+                  <div class="opt-ring" aria-hidden="true"></div>
+                </label>
+
+              </div>
+
+              <!-- QUANTITY -->
+              <div class="qty-row">
+                <span class="qty-label">Quantity</span>
+                <div class="qty-controls" role="group" aria-label="Adjust quantity">
+                  <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">&#8722;</button>
+                  <span class="qty-num" id="qty-num" aria-live="polite" aria-atomic="true">1</span>
+                  <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">&#43;</button>
                 </div>
               </div>
-              <span class="featured-badge">Most Popular</span>
-            </label>
-
-            <!-- Order Summary -->
-            <div class="order-summary">
-              <div class="summary-row">
-                <span class="summary-label">Selected</span>
-                <span class="summary-value" id="summary-product">1 Bottle — AG Mystique Original</span>
-              </div>
-              <div class="summary-row">
-                <span class="summary-label">Delivery</span>
-                <span class="summary-value" id="summary-delivery">Calculated on delivery</span>
-              </div>
-              <div class="summary-divider"></div>
-              <div class="summary-row summary-total-row">
-                <span class="summary-label">Total (Pay on Delivery)</span>
-                <span class="summary-total" id="summary-total">₦18,000</span>
-              </div>
-              <p class="summary-note">You pay only when the delivery agent arrives at your door. No upfront payment.</p>
             </div>
           </div>
 
-          <!-- Delivery Info Card -->
-          <div class="delivery-info-card">
-            <h3 class="delivery-info-title">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              Delivery Information
-            </h3>
-            <ul class="delivery-info-list">
-              <li>
-                <span class="di-dot"></span>
-                Orders arrive within <strong>1 to 7 business days</strong> after confirmation.
-              </li>
-              <li>
-                <span class="di-dot"></span>
-                You will receive a <strong>WhatsApp or call</strong> from our delivery team before arrival.
-              </li>
-              <li>
-                <span class="di-dot"></span>
-                <strong>Payment is made on delivery</strong> — cash or transfer to our delivery agent.
-              </li>
-              <li>
-                <span class="di-dot"></span>
-                We deliver to <strong>all states in Nigeria</strong>. Enter your nearest bus stop for accuracy.
-              </li>
-            </ul>
-          </div>
-        </div>
+          <!-- STEP 2: CUSTOMER DETAILS -->
+          <div class="section-card delay-2">
+            <div class="card-header">
+              <span class="card-step">2</span>
+              <h2 class="card-title">Your Delivery Details</h2>
+            </div>
+            <div class="card-body">
+              <div class="form-fields">
 
-        <!-- RIGHT: ORDER FORM -->
-        <div class="order-right">
-          <div class="order-card">
-            <h2 class="card-title">Your <em>Details</em></h2>
-            <p class="card-sub">We use these details to coordinate your delivery. All fields are required.</p>
+                <div class="form-group">
+                  <label class="form-label" for="f-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="f-name" class="form-input" placeholder="e.g. Chioma Okafor" autocomplete="name" inputmode="text" />
+                  <span class="ferr" id="e-name">Please enter your full name.</span>
+                </div>
 
-            <div class="form-body" id="order-form">
+                <div class="form-group">
+                  <label class="form-label" for="f-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+                  <input type="tel" id="f-phone" class="form-input" placeholder="e.g. 08012345678" autocomplete="tel" inputmode="tel" />
+                  <span class="ferr" id="e-phone">Please enter a valid Nigerian phone number (10–11 digits).</span>
+                </div>
 
-              <div class="form-group">
-                <label class="form-label" for="f-name">Full Name</label>
-                <input
-                  type="text"
-                  id="f-name"
-                  class="form-input"
-                  placeholder="e.g. Chioma Adeleke"
-                  autocomplete="name"
-                  inputmode="text"
-                />
-                <span class="form-error" id="err-name"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="f-phone">Phone Number</label>
-                <input
-                  type="tel"
-                  id="f-phone"
-                  class="form-input"
-                  placeholder="e.g. 08012345678"
-                  autocomplete="tel"
-                  inputmode="tel"
-                  maxlength="14"
-                />
-                <span class="form-error" id="err-phone"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="f-state">State</label>
-                <div class="select-wrap">
+                <div class="form-group">
+                  <label class="form-label" for="f-state">State <span class="req" aria-hidden="true">*</span></label>
                   <select id="f-state" class="form-select">
-                    <option value="">Select your state</option>
-                    <option>Abia</option>
-                    <option>Adamawa</option>
-                    <option>Akwa Ibom</option>
-                    <option>Anambra</option>
-                    <option>Bauchi</option>
-                    <option>Bayelsa</option>
-                    <option>Benue</option>
-                    <option>Borno</option>
-                    <option>Cross River</option>
-                    <option>Delta</option>
-                    <option>Ebonyi</option>
-                    <option>Edo</option>
-                    <option>Ekiti</option>
-                    <option>Enugu</option>
-                    <option>FCT — Abuja</option>
-                    <option>Gombe</option>
-                    <option>Imo</option>
-                    <option>Jigawa</option>
-                    <option>Kaduna</option>
-                    <option>Kano</option>
-                    <option>Katsina</option>
-                    <option>Kebbi</option>
-                    <option>Kogi</option>
-                    <option>Kwara</option>
-                    <option>Lagos</option>
-                    <option>Nasarawa</option>
-                    <option>Niger</option>
-                    <option>Ogun</option>
-                    <option>Ondo</option>
-                    <option>Osun</option>
-                    <option>Oyo</option>
-                    <option>Plateau</option>
-                    <option>Rivers</option>
-                    <option>Sokoto</option>
-                    <option>Taraba</option>
-                    <option>Yobe</option>
+                    <option value="" disabled selected>Select your state</option>
+                    <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option>
+                    <option>Anambra</option><option>Bauchi</option><option>Bayelsa</option>
+                    <option>Benue</option><option>Borno</option><option>Cross River</option>
+                    <option>Delta</option><option>Ebonyi</option><option>Edo</option>
+                    <option>Ekiti</option><option>Enugu</option><option>FCT — Abuja</option>
+                    <option>Gombe</option><option>Imo</option><option>Jigawa</option>
+                    <option>Kaduna</option><option>Kano</option><option>Katsina</option>
+                    <option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+                    <option>Lagos</option><option>Nasarawa</option><option>Niger</option>
+                    <option>Ogun</option><option>Ondo</option><option>Osun</option>
+                    <option>Oyo</option><option>Plateau</option><option>Rivers</option>
+                    <option>Sokoto</option><option>Taraba</option><option>Yobe</option>
                     <option>Zamfara</option>
                   </select>
-                  <span class="select-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><polyline points="6 9 12 15 18 9"/></svg>
-                  </span>
+                  <span class="ferr" id="e-state">Please select your state.</span>
                 </div>
-                <span class="form-error" id="err-state"></span>
+
+                <div class="form-group">
+                  <label class="form-label" for="f-city">City / Town <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="f-city" class="form-input" placeholder="e.g. Uyo" autocomplete="address-level2" inputmode="text" />
+                  <span class="ferr" id="e-city">Please enter your city or town.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="f-bus">Nearest Bus Stop / Landmark <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="f-bus" class="form-input" placeholder="e.g. Ewet Housing Junction" inputmode="text" />
+                  <p class="input-hint">Helps our delivery agent locate you quickly.</p>
+                  <span class="ferr" id="e-bus">Please enter a nearby bus stop or landmark.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="f-addr">Full Delivery Address <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="f-addr" class="form-textarea" placeholder="House number, street name, estate or area..." autocomplete="street-address"></textarea>
+                  <span class="ferr" id="e-addr">Please enter your delivery address.</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="f-note">Additional Notes <span style="color:var(--muted);font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+                  <textarea id="f-note" class="form-textarea" style="min-height:72px;" placeholder="Any special instructions for the delivery agent..."></textarea>
+                </div>
+
+                <!-- SUBMIT -->
+                <button class="btn-submit" id="btn-submit" type="button" aria-label="Proceed to WhatsApp to confirm your order">
+                  <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                  Proceed to WhatsApp
+                </button>
+                <p class="submit-note">Your order details open pre-filled in WhatsApp for our team to confirm. No payment now — you pay on delivery.</p>
+
               </div>
-
-              <div class="form-group">
-                <label class="form-label" for="f-city">City / Town</label>
-                <input
-                  type="text"
-                  id="f-city"
-                  class="form-input"
-                  placeholder="e.g. Uyo, Ikeja, Wuse"
-                  autocomplete="address-level2"
-                  inputmode="text"
-                />
-                <span class="form-error" id="err-city"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="f-busstop">
-                  Nearest Bus Stop / Landmark
-                  <span class="label-hint">Helps us find you faster</span>
-                </label>
-                <input
-                  type="text"
-                  id="f-busstop"
-                  class="form-input"
-                  placeholder="e.g. Ikot Ekpene Junction, Shoprite, Stadium"
-                  inputmode="text"
-                />
-                <span class="form-error" id="err-busstop"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="f-address">Delivery Address <span class="label-optional">(Optional)</span></label>
-                <input
-                  type="text"
-                  id="f-address"
-                  class="form-input"
-                  placeholder="House number, street name"
-                  autocomplete="street-address"
-                  inputmode="text"
-                />
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="f-note">Order Note <span class="label-optional">(Optional)</span></label>
-                <textarea
-                  id="f-note"
-                  class="form-textarea"
-                  rows="3"
-                  placeholder="Any special instructions for delivery?"
-                ></textarea>
-              </div>
-
-              <!-- Consent -->
-              <label class="consent-row" id="consent-label">
-                <input type="checkbox" id="f-consent" class="consent-check" />
-                <span class="consent-box" aria-hidden="true"></span>
-                <span class="consent-text">I understand that payment will be made on delivery and that orders arrive within 1 to 7 business days.</span>
-              </label>
-              <span class="form-error" id="err-consent"></span>
-
-              <!-- Submit -->
-              <button class="btn btn-proceed" id="proceed-btn" type="button">
-                <span id="proceed-label">Proceed to WhatsApp</span>
-                <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              </button>
-
-              <p class="proceed-note">Clicking the button above will open WhatsApp with your order details pre-filled. Our team will confirm your order within minutes.</p>
-
             </div>
           </div>
+
         </div>
 
+        <!-- ═══ RIGHT COL: SUMMARY + HOW IT WORKS ═══ -->
+        <div class="order-right">
+
+          <!-- ORDER SUMMARY (sticky) -->
+          <div class="section-card" style="margin-bottom:20px; position:sticky; top:calc(var(--nav-h) + 16px);">
+            <div class="card-header">
+              <span class="card-step" style="background:var(--surface-2);color:var(--gold);border:1px solid rgba(201,169,110,.28);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              </span>
+              <h2 class="card-title">Order Summary</h2>
+            </div>
+            <div class="card-body">
+              <div class="sum-lines">
+                <div class="sum-line">
+                  <span id="s-label">AG Mystique — 2 Bottles Bundle</span>
+                  <span class="lv" id="s-price">₦30,000</span>
+                </div>
+                <div class="sum-line">
+                  <span>Quantity</span>
+                  <span class="lv" id="s-qty">× 1</span>
+                </div>
+                <div class="sum-line">
+                  <span>Delivery</span>
+                  <span class="lv" id="s-del" style="color:var(--green);">Free</span>
+                </div>
+                <div class="sum-line sum-total">
+                  <span>Total Due on Delivery</span>
+                  <span class="lv" id="s-total">₦30,000</span>
+                </div>
+              </div>
+              <div class="sum-note" role="note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Our agent collects <strong>cash on delivery</strong>. Nothing is charged now.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- HOW IT WORKS -->
+          <div class="delivery-card">
+            <div class="delivery-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="17" height="17" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4a2 2 0 012 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-2"/><circle cx="11.5" cy="18.5" r="1.5"/><circle cx="20.5" cy="18.5" r="1.5"/></svg>
+              How Your Order Works
+            </div>
+            <div class="del-steps">
+              <div class="del-step">
+                <span class="del-num">1</span>
+                <p class="del-text"><strong>Fill this form</strong> — enter your name, phone number, and full delivery address.</p>
+              </div>
+              <div class="del-step">
+                <span class="del-num">2</span>
+                <p class="del-text"><strong>Confirm on WhatsApp</strong> — your order opens pre-filled. Just send the message to our team.</p>
+              </div>
+              <div class="del-step">
+                <span class="del-num">3</span>
+                <p class="del-text"><strong>We dispatch</strong> your order and it arrives within <strong>1 to 9 days</strong> depending on your location.</p>
+              </div>
+              <div class="del-step">
+                <span class="del-num">4</span>
+                <p class="del-text"><strong>Pay on delivery</strong> — hand cash to our agent when the order arrives. No upfront payment required.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="order-footer">
-    <div class="order-footer-inner">
-      <div class="footer-brand-col">
-        <a href="index.html" class="nav-logo">
-          <span class="logo-main">AG Mystique</span>
-          <span class="logo-sub">Hair Solutions</span>
-        </a>
-        <p class="footer-tagline">Premium natural hair growth oil from Uyo, Akwa Ibom, Nigeria.</p>
+  <footer class="order-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" aria-label="AG Mystique Hair Solutions — Home">
+            <span class="logo-main">AG Mystique</span>
+            <span class="logo-sub">Hair Solutions</span>
+          </a>
+          <p class="footer-desc">Premium natural hair growth oil from Uyo, Akwa Ibom. Pay on delivery across Nigeria.</p>
+        </div>
+        <div class="footer-links" role="list">
+          <a href="index.html" class="footer-link" role="listitem">Home</a>
+          <a href="index.html#pricing" class="footer-link" role="listitem">Pricing</a>
+          <a href="index.html#ingredients" class="footer-link" role="listitem">Ingredients</a>
+          <a href="index.html#results" class="footer-link" role="listitem">Results</a>
+          <a href="index.html#faq" class="footer-link" role="listitem">FAQ</a>
+          <a href="index.html#contact" class="footer-link" role="listitem">Contact</a>
+          <a href="tel:09043865300" class="footer-link" role="listitem">0904 386 5300</a>
+          <a href="mailto:agmystiquesolutions@gmail.com" class="footer-link" role="listitem">agmystiquesolutions@gmail.com</a>
+        </div>
       </div>
-      <div class="footer-links-col">
-        <a href="index.html">Home</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a href="index.html#ingredients">Ingredients</a>
-        <a href="index.html#results">Results</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#contact">Contact</a>
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; <span id="footer-year"></span> AG Mystique Hair Solutions. All rights reserved.</p>
+        <p class="footer-pay">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Payment on delivery — no card required
+        </p>
       </div>
-      <div class="footer-contact-col">
-        <a href="tel:09043865300">0904 386 5300</a>
-        <a href="mailto:agmystiquesolutions@gmail.com">agmystiquesolutions@gmail.com</a>
-        <span>Uyo, Akwa Ibom, Nigeria</span>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; <span id="footer-year"></span> AG Mystique Hair Solutions. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Floating WhatsApp -->
-  <a href="https://wa.me/2349043865300?text=Hello%2C%20I%20want%20to%20order%20AG%20Mystique%20Hair%20Solutions" class="float-whatsapp" id="float-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
+  <script>
+    'use strict';
 
-  <script src="order.js"></script>
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    /* ── STATE ── */
+    let qty = 1;
+    const PKGS = {
+      '1b': { label: 'AG Mystique Hair Oil — 1 Bottle',        price: 18000, delivery: 'Paid by buyer' },
+      '2b': { label: 'AG Mystique Hair Oil — 2 Bottles Bundle', price: 30000, delivery: 'Free'          }
+    };
+
+    /* ── REFS ── */
+    const radios  = document.querySelectorAll('input[name="pkg"]');
+    const qtyMinus = document.getElementById('qty-minus');
+    const qtyPlus  = document.getElementById('qty-plus');
+    const qtyNum   = document.getElementById('qty-num');
+    const sLabel   = document.getElementById('s-label');
+    const sPrice   = document.getElementById('s-price');
+    const sQty     = document.getElementById('s-qty');
+    const sDel     = document.getElementById('s-del');
+    const sTotal   = document.getElementById('s-total');
+    const submitBtn = document.getElementById('btn-submit');
+
+    /* ── HELPERS ── */
+    function fmt(n) { return '₦' + n.toLocaleString('en-NG'); }
+    function getSelected() {
+      let v = '2b';
+      radios.forEach(r => { if (r.checked) v = r.value; });
+      return PKGS[v];
+    }
+    function updateSummary() {
+      const p = getSelected();
+      const total = p.price * qty;
+      sLabel.textContent = p.label;
+      sPrice.textContent = fmt(p.price);
+      sQty.textContent   = '× ' + qty;
+      sDel.textContent   = p.delivery;
+      sDel.style.color   = p.delivery === 'Free' ? 'var(--green)' : 'var(--muted)';
+      sTotal.textContent = fmt(total);
+    }
+
+    /* ── QTY ── */
+    qtyMinus.addEventListener('click', () => {
+      if (qty > 1) { qty--; qtyNum.textContent = qty; updateSummary(); }
+    });
+    qtyPlus.addEventListener('click', () => {
+      if (qty < 10) { qty++; qtyNum.textContent = qty; updateSummary(); }
+    });
+    radios.forEach(r => r.addEventListener('change', updateSummary));
+    updateSummary();
+
+    /* ── VALIDATION ── */
+    const FIELDS = [
+      { id: 'f-name',  eid: 'e-name',  ok: v => v.trim().length >= 2 },
+      { id: 'f-phone', eid: 'e-phone', ok: v => /^[0-9]{10,11}$/.test(v.replace(/\s/g,'')) },
+      { id: 'f-state', eid: 'e-state', ok: v => v !== '' },
+      { id: 'f-city',  eid: 'e-city',  ok: v => v.trim().length >= 2 },
+      { id: 'f-bus',   eid: 'e-bus',   ok: v => v.trim().length >= 3 },
+      { id: 'f-addr',  eid: 'e-addr',  ok: v => v.trim().length >= 6 }
+    ];
+
+    FIELDS.forEach(f => {
+      const el  = document.getElementById(f.id);
+      const err = document.getElementById(f.eid);
+      const clear = () => { el.classList.remove('err'); err.classList.remove('on'); };
+      el.addEventListener('input', clear);
+      el.addEventListener('change', clear);
+    });
+
+    function validate() {
+      let ok = true;
+      FIELDS.forEach(f => {
+        const el  = document.getElementById(f.id);
+        const err = document.getElementById(f.eid);
+        const pass = f.ok(el.value);
+        el.classList.toggle('err', !pass);
+        err.classList.toggle('on', !pass);
+        if (!pass) ok = false;
+      });
+      return ok;
+    }
+
+    /* ── SUBMIT → WHATSAPP ── */
+    submitBtn.addEventListener('click', () => {
+      if (!validate()) {
+        const first = document.querySelector('.form-input.err, .form-textarea.err, .form-select.err');
+        if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const pkg   = getSelected();
+      const name  = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const state = document.getElementById('f-state').value;
+      const city  = document.getElementById('f-city').value.trim();
+      const bus   = document.getElementById('f-bus').value.trim();
+      const addr  = document.getElementById('f-addr').value.trim();
+      const note  = document.getElementById('f-note').value.trim();
+      const total = pkg.price * qty;
+
+      const msg = [
+        `Hello! I would like to place an order for AG Mystique Hair Solutions.`,
+        ``,
+        `*ORDER DETAILS*`,
+        `Product: ${pkg.label}`,
+        `Quantity: ${qty}`,
+        `Unit Price: ${fmt(pkg.price)}`,
+        `Total: ${fmt(total)}`,
+        `Delivery: ${pkg.delivery}`,
+        ``,
+        `*DELIVERY DETAILS*`,
+        `Name: ${name}`,
+        `Phone: ${phone}`,
+        `State: ${state}`,
+        `City: ${city}`,
+        `Nearest Bus Stop / Landmark: ${bus}`,
+        `Address: ${addr}`,
+        note ? `Notes: ${note}` : null,
+        ``,
+        `I understand that payment will be made on delivery. Please confirm my order. Thank you.`
+      ].filter(l => l !== null).join('\n');
+
+      const url = `https://wa.me/2349043865300?text=${encodeURIComponent(msg)}`;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Opening WhatsApp...';
+
+      setTimeout(() => {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        submitBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Order Sent — Check WhatsApp`;
+        submitBtn.style.background = '#1a9e4e';
+        submitBtn.disabled = false;
+      }, 500);
+    });
+  </script>
 </body>
 </html>
