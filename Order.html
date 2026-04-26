@@ -375,6 +375,16 @@
     }
     .success-payment strong { color: var(--muted); }
 
+    .success-close {
+      display: block; width: 100%; margin-top: 10px;
+      padding: 12px; border-radius: var(--pill);
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font-family: var(--font-sans);
+      font-size: 13px; font-weight: 500; letter-spacing: .04em;
+      cursor: pointer; transition: border-color var(--ease), color var(--ease);
+    }
+    .success-close:hover { border-color: rgba(255,255,255,.2); color: var(--white); }
+
     /* FOOTER */
     .order-footer { border-top: 1px solid var(--border); padding: clamp(28px,5vw,48px) var(--px); max-width: 1160px; margin: 0 auto; }
     .footer-inner { display: flex; flex-direction: column; gap: 20px; }
@@ -712,7 +722,7 @@
           <a href="index.html#results" class="footer-link" role="listitem">Results</a>
           <a href="index.html#faq" class="footer-link" role="listitem">FAQ</a>
           <a href="index.html#contact" class="footer-link" role="listitem">Contact</a>
-          <a href="tel:09043865300" class="footer-link" role="listitem">09043865300</a>
+          <a href="tel:09043865300" class="footer-link" role="listitem">0904 386 5300</a>
           <a href="mailto:agmystiquesolutions@gmail.com" class="footer-link" role="listitem">agmystiquesolutions@gmail.com</a>
         </div>
       </div>
@@ -737,6 +747,9 @@
         Open WhatsApp
       </button>
       <p class="success-payment">Payment accepted: <strong>Cash on Delivery</strong> or <strong>Bank Transfer</strong></p>
+      <button class="success-close" id="success-close" type="button" aria-label="Close and go back to order form">
+        Go Back to Order
+      </button>
     </div>
   </div>
 
@@ -863,7 +876,7 @@
         `I understand that payment will be made on delivery or via bank transfer. Please confirm my order. Thank you.`
       ].filter(l => l !== null).join('\n');
 
-      const waUrl = `https://wa.me/2348024547273?text=${encodeURIComponent(msg)}`;
+      const waUrl = `https://wa.me/2349043865300?text=${encodeURIComponent(msg)}`;
 
       // Show success overlay
       const overlay = document.getElementById('success-overlay');
@@ -871,7 +884,10 @@
       overlay.classList.add('visible');
       document.body.style.overflow = 'hidden';
 
-      // Auto-open WhatsApp after 2s and wire up the button
+      document.getElementById('success-close').addEventListener('click', () => {
+        overlay.classList.remove('visible');
+        document.body.style.overflow = '';
+      });
       waBtn.addEventListener('click', () => {
         window.open(waUrl, '_blank', 'noopener,noreferrer');
       }, { once: true });
