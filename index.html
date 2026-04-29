@@ -1,835 +1,635 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AG Mystique Hair Solutions — Premium natural hair growth oil from Uyo, Akwa Ibom. 100% natural ingredients for real hair growth results." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="AG Mystique Hair Solutions — Premium natural hair growth oil. 100% natural. Pay on delivery across Nigeria."/>
   <title>AG Mystique Hair Solutions — Natural Hair Growth Oil</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
+  <!-- THEME SWITCHER -->
+  <div class="theme-switcher" id="theme-switcher" role="group" aria-label="Choose color theme">
+    <button class="theme-btn" data-theme="dark" aria-label="Dark mode" title="Dark">
+      <span class="theme-dot"></span>
+    </button>
+    <button class="theme-btn active" data-theme="light" aria-label="Light mode" title="Light">
+      <span class="theme-dot"></span>
+    </button>
+    <button class="theme-btn" data-theme="warm" aria-label="Warm mode" title="Warm">
+      <span class="theme-dot"></span>
+    </button>
+  </div>
+
   <!-- NAVBAR -->
-  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <nav class="navbar" id="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo" aria-label="AG Mystique Hair Solutions Home">
-        <span class="logo-main">AG Mystique</span>
-        <span class="logo-sub">Hair Solutions</span>
+      <a href="#" class="nav-logo" aria-label="AG Mystique Hair Solutions">
+        <span class="logo-mark">AG</span>
+        <span class="logo-text">
+          <span class="logo-main">Mystique</span>
+          <span class="logo-sub">Hair Solutions</span>
+        </span>
       </a>
-      <ul class="nav-links" role="list">
+      <ul class="nav-links">
         <li><a href="#pricing" class="nav-link">Pricing</a></li>
-        <li><a href="#product" class="nav-link">Product</a></li>
+        <li><a href="#product" class="nav-link">Products</a></li>
         <li><a href="#ingredients" class="nav-link">Ingredients</a></li>
         <li><a href="#results" class="nav-link">Results</a></li>
-        <li><a href="#reviews" class="nav-link">Reviews</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
-      <a href="Order.html" class="btn btn-white nav-cta">Order Now</a>
-      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
-        <span class="ham-line ham-top"></span>
-        <span class="ham-line ham-mid"></span>
-        <span class="ham-line ham-bot"></span>
-      </button>
+      <div class="nav-right">
+        <a href="order.html" class="btn btn-outline nav-cta">Order Now</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="h-line h-top"></span>
+          <span class="h-line h-mid"></span>
+          <span class="h-line h-bot"></span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-hidden="true">
-    <div class="mobile-menu-overlay"></div>
-    <nav class="mobile-nav">
-      <ul class="mobile-nav-links" role="list">
-        <li class="mobile-nav-item"><a href="#pricing" class="mobile-nav-link">Pricing</a></li>
-        <li class="mobile-nav-item"><a href="#product" class="mobile-nav-link">Product</a></li>
-        <li class="mobile-nav-item"><a href="#ingredients" class="mobile-nav-link">Ingredients</a></li>
-        <li class="mobile-nav-item"><a href="#results" class="mobile-nav-link">Results</a></li>
-        <li class="mobile-nav-item"><a href="#reviews" class="mobile-nav-link">Reviews</a></li>
-        <li class="mobile-nav-item"><a href="#faq" class="mobile-nav-link">FAQ</a></li>
-        <li class="mobile-nav-item"><a href="#contact" class="mobile-nav-link">Contact</a></li>
+  <div class="mob-menu" id="mob-menu" aria-hidden="true">
+    <div class="mob-bg"></div>
+    <nav class="mob-nav">
+      <ul class="mob-links">
+        <li class="mob-item"><a href="#pricing"     class="mob-link">Pricing</a></li>
+        <li class="mob-item"><a href="#product"     class="mob-link">Products</a></li>
+        <li class="mob-item"><a href="#ingredients" class="mob-link">Ingredients</a></li>
+        <li class="mob-item"><a href="#results"     class="mob-link">Results</a></li>
+        <li class="mob-item"><a href="#faq"         class="mob-link">FAQ</a></li>
+        <li class="mob-item"><a href="#contact"     class="mob-link">Contact</a></li>
       </ul>
-      <a href="Order.html" class="btn btn-white mobile-order-btn">Order Now</a>
+      <a href="order.html" class="btn btn-fill mob-order">Order Now</a>
     </nav>
   </div>
 
   <main>
 
-    <!-- HERO SLIDER -->
-    <section class="hero-slider" id="hero" aria-label="Hero slider">
-      <div class="slides-wrapper">
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="hero" aria-label="Hero">
+      <div class="hero-slides">
 
-        <div class="slide slide-1 active" role="group" aria-label="Slide 1 of 3">
-          <img src="https://i.pinimg.com/736x/d1/1b/9a/d11b9a28f851fea6c1dc1fe7304c12b6.jpg" alt="Woman with beautiful natural hair" class="slide-bg" />
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-eyebrow slide-text-anim">Natural Hair Growth Oil</span>
-            <h1 class="slide-headline slide-text-anim">Unlock Your Hair's <em>True Potential</em></h1>
-            <p class="slide-sub slide-text-anim">A premium blend of nature's finest oils, formulated to nourish every strand from root to tip.</p>
-            <div class="slide-btns slide-text-anim">
-              <a href="Order.html" class="btn btn-white">Order Now</a>
-              <a href="https://wa.me/2348024547273?text=Hello%2C%20I%20want%20to%20order%20AG%20Mystique%20Hair%20Solutions" class="btn btn-green" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <div class="slide active" data-index="0">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1600&q=85&auto=format&fit=crop" alt="" class="slide-bg" aria-hidden="true"/>
+          <div class="slide-veil"></div>
+          <div class="hero-content">
+            <div class="hero-text">
+              <p class="hero-eyebrow anim-1">Natural Hair Growth Oil</p>
+              <h1 class="hero-title anim-2">Unlock Your Hair's<br><em>True Potential</em></h1>
+              <p class="hero-body anim-3">A premium blend of nature's finest oils, crafted to nourish every strand from root to tip.</p>
+              <div class="hero-btns anim-4">
+                <a href="order.html" class="btn btn-fill">Order Now</a>
+                <a href="https://wa.me/2349043865300?text=Hello%2C%20I%20want%20to%20order%20AG%20Mystique%20Hair%20Solutions" class="btn btn-wa" target="_blank" rel="noopener">Chat on WhatsApp</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="slide slide-2" role="group" aria-label="Slide 2 of 3">
-          <img src="https://i.pinimg.com/1200x/eb/9e/22/eb9e22b341287c12680bafbb9097c55f.jpg" alt="Woman with healthy growing hair" class="slide-bg" loading="lazy" />
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-eyebrow slide-text-anim">Clinically Proven Results</span>
-            <h1 class="slide-headline slide-text-anim">Stop the Breakage. <em>End the Thinning.</em></h1>
-            <p class="slide-sub slide-text-anim">AG Mystique penetrates deep into the scalp to strengthen hair follicles and reduce breakage from the inside out.</p>
-            <div class="slide-btns slide-text-anim">
-              <a href="Order.html" class="btn btn-white">Order Now</a>
-              <a href="#faq" class="btn btn-ghost">Read the FAQ</a>
+        <div class="slide" data-index="1">
+          <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=1600&q=85&auto=format&fit=crop" alt="" class="slide-bg" aria-hidden="true"/>
+          <div class="slide-veil"></div>
+          <div class="hero-content">
+            <div class="hero-text">
+              <p class="hero-eyebrow anim-1">Clinically Proven Results</p>
+              <h1 class="hero-title anim-2">Stop the Breakage.<br><em>End the Thinning.</em></h1>
+              <p class="hero-body anim-3">AG Mystique penetrates deep into the scalp, strengthening follicles and ending breakage from the inside out.</p>
+              <div class="hero-btns anim-4">
+                <a href="order.html" class="btn btn-fill">Order Now</a>
+                <a href="#faq" class="btn btn-outline">Read the FAQ</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="slide slide-3" role="group" aria-label="Slide 3 of 3">
-          <img src="https://i.pinimg.com/1200x/91/10/8c/91108c853770125df39bce53189577d9.jpg" alt="Thousands of women with real results" class="slide-bg" loading="lazy" />
-          <div class="slide-overlay"></div>
-          <div class="slide-content">
-            <span class="slide-eyebrow slide-text-anim">Join the Movement</span>
-            <h1 class="slide-headline slide-text-anim">Thousands of Women. <em>Real Results.</em></h1>
-            <p class="slide-sub slide-text-anim">Over 2,400 women across Nigeria have transformed their hair with AG Mystique. You could be next.</p>
-            <div class="slide-btns slide-text-anim">
-              <a href="Order.html" class="btn btn-white">Order Now</a>
-              <a href="#results" class="btn btn-ghost">See Results</a>
+        <div class="slide" data-index="2">
+          <img src="https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?w=1600&q=85&auto=format&fit=crop" alt="" class="slide-bg" aria-hidden="true"/>
+          <div class="slide-veil"></div>
+          <div class="hero-content">
+            <div class="hero-text">
+              <p class="hero-eyebrow anim-1">Join the Movement</p>
+              <h1 class="hero-title anim-2">Thousands of Women.<br><em>Real Results.</em></h1>
+              <p class="hero-body anim-3">Over 2,400 women across Nigeria have transformed their hair. You could be next.</p>
+              <div class="hero-btns anim-4">
+                <a href="order.html" class="btn btn-fill">Order Now</a>
+                <a href="#results" class="btn btn-outline">See Results</a>
+              </div>
             </div>
           </div>
         </div>
 
       </div>
-      <div class="slider-dots" role="tablist" aria-label="Slide navigation">
-        <button class="dot active" role="tab" aria-selected="true" aria-label="Go to slide 1" data-index="0"></button>
-        <button class="dot" role="tab" aria-selected="false" aria-label="Go to slide 2" data-index="1"></button>
-        <button class="dot" role="tab" aria-selected="false" aria-label="Go to slide 3" data-index="2"></button>
+
+      <!-- Slide controls -->
+      <div class="hero-dots" role="tablist" aria-label="Hero slides">
+        <button class="hdot active" data-i="0" role="tab" aria-selected="true"  aria-label="Slide 1"></button>
+        <button class="hdot"        data-i="1" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+        <button class="hdot"        data-i="2" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+      </div>
+
+      <!-- Scroll cue -->
+      <div class="scroll-cue" aria-hidden="true">
+        <span class="scroll-line"></span>
+        <span class="scroll-label">Scroll</span>
       </div>
     </section>
 
-    <!-- PROOF BAR -->
-    <section class="proof-bar" aria-label="Brand statistics">
+    <!-- ═══ PROOF BAR ═══ -->
+    <section class="proof-bar" aria-label="Key statistics">
       <div class="container">
         <div class="proof-grid">
-          <div class="proof-item reveal-up">
-            <span class="proof-number">2,400+</span>
-            <span class="proof-label">Happy Customers</span>
+          <div class="proof-item rv">
+            <span class="proof-n" data-count="2400" data-suffix="+" data-prefix="">2,400+</span>
+            <span class="proof-l">Happy Customers</span>
           </div>
-          <div class="proof-item reveal-up delay-1">
-            <span class="proof-number">98%</span>
-            <span class="proof-label">Satisfaction Rate</span>
+          <div class="proof-item rv">
+            <span class="proof-n" data-count="98" data-suffix="%" data-prefix="">98%</span>
+            <span class="proof-l">Satisfaction Rate</span>
           </div>
-          <div class="proof-item reveal-up delay-2">
-            <span class="proof-number">100%</span>
-            <span class="proof-label">Natural Ingredients</span>
+          <div class="proof-item rv">
+            <span class="proof-n" data-count="100" data-suffix="%" data-prefix="">100%</span>
+            <span class="proof-l">Natural Ingredients</span>
           </div>
-          <div class="proof-item reveal-up delay-3">
-            <span class="proof-number">4 Weeks</span>
-            <span class="proof-label">Visible Results</span>
+          <div class="proof-item rv">
+            <span class="proof-n" data-count="4" data-suffix=" Weeks" data-prefix="">4 Weeks</span>
+            <span class="proof-l">Visible Results</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROMO / PRICING -->
-    <section class="pricing-section" id="pricing" aria-labelledby="pricing-heading">
+    <!-- ═══ PRICING ═══ -->
+    <section class="pricing-section" id="pricing">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">Limited Time Offer</span>
-          <h2 class="section-title" id="pricing-heading">Invest in Your <em>Hair's Future</em></h2>
-          <p class="section-sub">Offer ends when the timer runs out. Don't miss out.</p>
+        <div class="section-head rv">
+          <p class="eyebrow">Limited Offer</p>
+          <h2 class="section-title">Invest in Your <em>Hair's Future</em></h2>
+          <p class="section-body">Offer expires when the timer runs out. Free delivery on 2-bottle orders.</p>
         </div>
 
-        <div class="countdown-bar reveal-up">
-          <span class="countdown-label">Offer Expires In</span>
-          <div class="countdown-timer">
-            <span class="time-block"><span class="time-num" id="cd-hours">00</span><span class="time-unit">Hrs</span></span>
-            <span class="time-sep">:</span>
-            <span class="time-block"><span class="time-num" id="cd-mins">00</span><span class="time-unit">Min</span></span>
-            <span class="time-sep">:</span>
-            <span class="time-block"><span class="time-num" id="cd-secs">00</span><span class="time-unit">Sec</span></span>
+        <div class="countdown-wrap rv">
+          <span class="cd-label">Offer Expires In</span>
+          <div class="countdown">
+            <div class="cd-block"><span class="cd-n" id="cd-h">00</span><span class="cd-u">Hrs</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-n" id="cd-m">00</span><span class="cd-u">Min</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-n" id="cd-s">00</span><span class="cd-u">Sec</span></div>
           </div>
         </div>
 
-        <div class="pricing-cards">
-          <div class="pricing-card reveal-up">
-            <div class="pricing-card-inner">
-              <span class="pricing-qty">1 Bottle</span>
-              <div class="pricing-price">
-                <span class="price-currency">₦</span>
-                <span class="price-amount">18,000</span>
+        <div class="pricing-grid">
+          <div class="price-card rv">
+            <div class="price-card-inner">
+              <span class="price-tier">1 Bottle</span>
+              <div class="price-amount">
+                <span class="price-cur">₦</span><span class="price-val">18,000</span>
               </div>
-              <p class="pricing-desc">Perfect for first-time users. One month supply of AG Mystique Original formula.</p>
-              <ul class="pricing-features">
-                <li>Full 60ml bottle</li>
-                <li>Free application guide</li>
+              <p class="price-desc">Perfect for first-time users. One full 60ml bottle — your first 30 days of transformation.</p>
+              <ul class="price-features">
+                <li>60ml full bottle</li>
+                <li>Application guide included</li>
                 <li>WhatsApp support</li>
+                <li>Pay on delivery</li>
               </ul>
-              <a href="Order.html" class="btn btn-ghost btn-full">Order Now</a>
+              <a href="order.html" class="btn btn-outline btn-full">Order Now</a>
             </div>
           </div>
-          <div class="pricing-card pricing-card--featured reveal-up delay-1">
-            <div class="pricing-card-inner">
-              <span class="badge-popular">Most Popular</span>
-              <span class="pricing-qty">2 Bottles</span>
-              <div class="pricing-price">
+
+          <div class="price-card price-card--hero rv">
+            <div class="price-card-inner">
+              <span class="price-badge">Most Popular</span>
+              <span class="price-tier">2 Bottles</span>
+              <div class="price-amount">
                 <span class="price-was">₦36,000</span>
                 <div class="price-row">
-                  <span class="price-currency">₦</span>
-                  <span class="price-amount">30,000</span>
+                  <span class="price-cur">₦</span><span class="price-val">30,000</span>
                 </div>
-                <span class="badge-save">Save ₦6,000</span>
+                <span class="price-save">You save ₦6,000</span>
               </div>
-              <p class="pricing-desc">Best value. Two-month supply with a dedicated 60-day hair growth plan.</p>
-              <ul class="pricing-features">
+              <p class="price-desc">Best value. Two 60ml bottles — your complete 60-day hair growth journey. Free delivery included.</p>
+              <ul class="price-features">
                 <li>Two full 60ml bottles</li>
-                <li>Free application guide</li>
+                <li>Application guide included</li>
                 <li>Priority WhatsApp support</li>
                 <li>Free delivery included</li>
+                <li>Pay on delivery</li>
               </ul>
-              <a href="Order.html" class="btn btn-white btn-full">Order Now — Best Deal</a>
+              <a href="order.html" class="btn btn-fill btn-full">Order Now — Best Deal</a>
             </div>
           </div>
         </div>
 
-        <div class="section-cta-strip reveal-up">
-          <p>Free delivery within 7 days. Pay on delivery — no upfront payment required.</p>
-          <a href="Order.html" class="btn btn-white">Order Now</a>
+        <div class="strip rv">
+          <p>Free delivery. Cash or bank transfer on arrival. No upfront payment.</p>
+          <a href="order.html" class="btn btn-outline">Order Now</a>
         </div>
       </div>
     </section>
 
-    <!-- PRODUCT SECTION -->
-    <section class="product-section" id="product" aria-labelledby="product-heading">
+    <!-- ═══ PRODUCTS ═══ -->
+    <section class="products-section" id="product">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">Our Products</span>
-          <h2 class="section-title" id="product-heading">Choose Your <em>Formula</em></h2>
-          <p class="section-sub">Three premium options crafted for different hair needs and goals.</p>
+        <div class="section-head rv">
+          <p class="eyebrow">Our Products</p>
+          <h2 class="section-title">Choose Your <em>Formula</em></h2>
+          <p class="section-body">Three options, each crafted for a different hair need.</p>
         </div>
+        <div class="products-grid">
 
-        <div class="product-grid">
-
-          <div class="product-card reveal-up">
-            <div class="product-img-wrap" data-lightbox>
-              <img src="images/image1.jpeg" alt="AG Mystique Original Hair Growth Oil" class="product-img" loading="lazy" />
-              <div class="product-img-overlay">
-                <span class="zoom-hint">Tap to zoom</span>
+          <div class="prod-card rv" data-lightbox>
+            <div class="prod-img-wrap">
+              <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=700&q=80&auto=format&fit=crop" alt="AG Mystique Original" class="prod-img" loading="lazy"/>
+              <div class="prod-hover">
+                <span>Tap to zoom</span>
               </div>
             </div>
-            <div class="product-info">
-              <h3 class="product-name">AG Mystique Original</h3>
-              <div class="product-price">₦18,000</div>
-              <ul class="product-benefits">
+            <div class="prod-info">
+              <h3 class="prod-name">AG Mystique Original</h3>
+              <p class="prod-price">₦18,000</p>
+              <ul class="prod-benefits">
                 <li>Stimulates scalp circulation</li>
                 <li>Reduces hair breakage</li>
                 <li>Adds shine and moisture</li>
-                <li>Suitable for all hair types</li>
+                <li>All hair types</li>
               </ul>
-              <p class="product-usage">Apply 3-5 drops to scalp, massage gently. Use twice weekly.</p>
-              <a href="Order.html" class="btn btn-white btn-full">Order Now</a>
+              <p class="prod-usage">Apply 3–5 drops to scalp, massage gently. Use twice weekly.</p>
+              <a href="order.html" class="btn btn-outline btn-full">Order Now</a>
             </div>
           </div>
 
-          <div class="product-card reveal-up delay-1">
-            <div class="product-img-wrap" data-lightbox>
-              <img src="images/imag2.jpeg" alt="AG Mystique Intensive Hair Growth Oil" class="product-img" loading="lazy" />
-              <div class="product-img-overlay">
-                <span class="zoom-hint">Tap to zoom</span>
-              </div>
+          <div class="prod-card rv" data-lightbox>
+            <div class="prod-img-wrap">
+              <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=700&q=80&auto=format&fit=crop" alt="AG Mystique Intensive" class="prod-img" loading="lazy"/>
+              <div class="prod-hover"><span>Tap to zoom</span></div>
             </div>
-            <div class="product-info">
-              <h3 class="product-name">AG Mystique Intensive</h3>
-              <div class="product-price">₦18,000</div>
-              <ul class="product-benefits">
+            <div class="prod-info">
+              <h3 class="prod-name">AG Mystique Intensive</h3>
+              <p class="prod-price">₦18,000</p>
+              <ul class="prod-benefits">
                 <li>Maximum-strength formula</li>
                 <li>Targets severe hair loss</li>
                 <li>Deep follicle nourishment</li>
-                <li>For stubborn hair thinning</li>
+                <li>For stubborn thinning</li>
               </ul>
-              <p class="product-usage">Apply 5-7 drops to problem areas. Massage for 2 minutes. Use daily.</p>
-              <a href="Order.html" class="btn btn-white btn-full">Order Now</a>
+              <p class="prod-usage">Apply 5–7 drops to problem areas. Massage 2 minutes daily.</p>
+              <a href="order.html" class="btn btn-outline btn-full">Order Now</a>
             </div>
           </div>
 
-          <div class="product-card reveal-up delay-2">
-            <div class="product-img-wrap" data-lightbox>
-              <img src="images/image1.jpeg" alt="AG Mystique 2-Bottle Bundle" class="product-img" loading="lazy" />
-              <div class="product-img-overlay">
-                <span class="zoom-hint">Tap to zoom</span>
-              </div>
+          <div class="prod-card rv" data-lightbox>
+            <div class="prod-img-wrap">
+              <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=700&q=80&auto=format&fit=crop" alt="AG Mystique 2-Bottle Bundle" class="prod-img" loading="lazy"/>
+              <div class="prod-hover"><span>Tap to zoom</span></div>
             </div>
-            <div class="product-info">
-              <h3 class="product-name">2-Bottle Bundle</h3>
-              <div class="product-price">
-                ₦30,000
-                <span class="price-strike">₦36,000</span>
-              </div>
-              <ul class="product-benefits">
+            <div class="prod-info">
+              <h3 class="prod-name">2-Bottle Bundle</h3>
+              <p class="prod-price">₦30,000 <span class="prod-was">₦36,000</span></p>
+              <ul class="prod-benefits">
                 <li>Full 60-day supply</li>
                 <li>Save ₦6,000 instantly</li>
                 <li>Mix and match formulas</li>
-                <li>Free delivery included</li>
+                <li>Free delivery</li>
               </ul>
-              <p class="product-usage">Includes two bottles. Follow individual product guidelines for best results.</p>
-              <a href="Order.html" class="btn btn-white btn-full">Order Now</a>
+              <p class="prod-usage">Includes two full bottles. Use individually per product guide.</p>
+              <a href="order.html" class="btn btn-outline btn-full">Order Now</a>
             </div>
           </div>
 
         </div>
-
-        <div class="section-cta-strip reveal-up">
-          <p>Not sure which product is right for you?</p>
-          <a href="#faq" class="btn btn-ghost">Read the FAQ</a>
+        <div class="strip rv">
+          <p>Not sure which formula suits you?</p>
+          <a href="#faq" class="btn btn-outline">Read the FAQ</a>
         </div>
       </div>
     </section>
 
     <!-- LIGHTBOX -->
-    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Image zoom" aria-hidden="true">
-      <div class="lightbox-bg"></div>
-      <button class="lightbox-close" aria-label="Close image zoom">&#215;</button>
-      <img src="" alt="" class="lightbox-img" id="lightbox-img" />
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+      <div class="lb-bg"></div>
+      <button class="lb-close" aria-label="Close">&#215;</button>
+      <img src="" alt="" id="lb-img" class="lb-img"/>
     </div>
 
-    <!-- INGREDIENTS -->
-    <section class="ingredients-section" id="ingredients" aria-labelledby="ingredients-heading">
+    <!-- ═══ INGREDIENTS ═══ -->
+    <section class="ingredients-section" id="ingredients">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">What's Inside</span>
-          <h2 class="section-title" id="ingredients-heading">Nature's Most <em>Powerful Oils</em></h2>
-          <p class="section-sub">Every ingredient is hand-selected for its proven ability to transform hair health.</p>
+        <div class="section-head rv">
+          <p class="eyebrow">What's Inside</p>
+          <h2 class="section-title">Nature's Most <em>Powerful Oils</em></h2>
+          <p class="section-body">Every ingredient is hand-selected for its proven ability to transform hair health.</p>
         </div>
-
-        <div class="ingredients-grid" id="ingredients-grid">
-          <div class="ingredient-card reveal-up">
-            <span class="ing-number">01</span>
-            <h3 class="ing-name">Carrot Seed Oil</h3>
-            <p class="ing-desc">Rich in beta-carotene and vitamins A and E, it deeply nourishes follicles and promotes strong, rapid hair growth.</p>
-          </div>
-          <div class="ingredient-card reveal-up delay-1">
-            <span class="ing-number">02</span>
-            <h3 class="ing-name">Coconut Oil</h3>
-            <p class="ing-desc">Penetrates the hair shaft to reduce protein loss, prevent breakage, and lock in deep moisture from root to tip.</p>
-          </div>
-          <div class="ingredient-card reveal-up delay-2">
-            <span class="ing-number">03</span>
-            <h3 class="ing-name">Sweet Almond Oil</h3>
-            <p class="ing-desc">Packed with magnesium and omega-9 fatty acids, it softens hair strands and reduces shedding caused by breakage.</p>
-          </div>
-          <div class="ingredient-card reveal-up delay-3">
-            <span class="ing-number">04</span>
-            <h3 class="ing-name">Rosemary Herbs</h3>
-            <p class="ing-desc">Clinically proven to stimulate blood circulation in the scalp, activating dormant hair follicles for new growth.</p>
-          </div>
-          <div class="ingredient-card reveal-up hidden-ingredient">
-            <span class="ing-number">05</span>
-            <h3 class="ing-name">Soursop Herbs</h3>
-            <p class="ing-desc">A powerful anti-inflammatory that soothes scalp irritation and creates an optimal environment for healthy growth.</p>
-          </div>
-          <div class="ingredient-card reveal-up hidden-ingredient delay-1">
-            <span class="ing-number">06</span>
-            <h3 class="ing-name">Tea Tree Oil</h3>
-            <p class="ing-desc">Deeply cleanses scalp pores, eliminates dandruff-causing fungus, and unblocks follicles to encourage hair growth.</p>
-          </div>
-          <div class="ingredient-card reveal-up hidden-ingredient delay-2">
-            <span class="ing-number">07</span>
-            <h3 class="ing-name">Peppermint Oil</h3>
-            <p class="ing-desc">Creates a cooling sensation that stimulates blood flow to the scalp, resulting in faster and thicker hair growth.</p>
-          </div>
-          <div class="ingredient-card reveal-up hidden-ingredient delay-3">
-            <span class="ing-number">08</span>
-            <h3 class="ing-name">Moringa Oil</h3>
-            <p class="ing-desc">Contains all 18 amino acids essential for keratin production, rebuilding damaged strands from the inside out.</p>
-          </div>
-          <div class="ingredient-card reveal-up hidden-ingredient">
-            <span class="ing-number">09</span>
-            <h3 class="ing-name">Olive Oil</h3>
-            <p class="ing-desc">A time-honoured hair tonic that seals the cuticle, adds mirror-like shine, and prevents environmental damage.</p>
-          </div>
+        <div class="ing-grid" id="ing-grid">
+          <div class="ing-card rv"><span class="ing-n">01</span><h3 class="ing-name">Carrot Seed Oil</h3><p class="ing-desc">Rich in beta-carotene and vitamins A and E, it deeply nourishes follicles and promotes strong, rapid growth.</p></div>
+          <div class="ing-card rv"><span class="ing-n">02</span><h3 class="ing-name">Coconut Oil</h3><p class="ing-desc">Penetrates the hair shaft to reduce protein loss, prevent breakage, and lock in deep moisture.</p></div>
+          <div class="ing-card rv"><span class="ing-n">03</span><h3 class="ing-name">Sweet Almond Oil</h3><p class="ing-desc">Packed with magnesium and omega-9 fatty acids, it softens strands and reduces shedding caused by breakage.</p></div>
+          <div class="ing-card rv"><span class="ing-n">04</span><h3 class="ing-name">Rosemary Herbs</h3><p class="ing-desc">Clinically proven to stimulate blood circulation in the scalp, activating dormant follicles for new growth.</p></div>
+          <div class="ing-card rv ing-hidden"><span class="ing-n">05</span><h3 class="ing-name">Soursop Herbs</h3><p class="ing-desc">A powerful anti-inflammatory that soothes scalp irritation and creates an optimal environment for growth.</p></div>
+          <div class="ing-card rv ing-hidden"><span class="ing-n">06</span><h3 class="ing-name">Tea Tree Oil</h3><p class="ing-desc">Deeply cleanses pores, eliminates dandruff-causing fungus, and unblocks follicles for healthy growth.</p></div>
+          <div class="ing-card rv ing-hidden"><span class="ing-n">07</span><h3 class="ing-name">Peppermint Oil</h3><p class="ing-desc">Creates a cooling sensation that stimulates blood flow, resulting in faster and thicker hair growth.</p></div>
+          <div class="ing-card rv ing-hidden"><span class="ing-n">08</span><h3 class="ing-name">Moringa Oil</h3><p class="ing-desc">Contains all 18 amino acids essential for keratin production, rebuilding damaged strands from the inside out.</p></div>
+          <div class="ing-card rv ing-hidden"><span class="ing-n">09</span><h3 class="ing-name">Olive Oil</h3><p class="ing-desc">A time-honoured tonic that seals the cuticle, adds mirror-like shine, and prevents environmental damage.</p></div>
         </div>
-
-        <div class="ingredients-toggle-wrap reveal-up">
-          <button class="btn btn-ghost" id="ing-toggle-btn">Show All Ingredients</button>
+        <div class="ing-toggle-wrap rv">
+          <button class="btn btn-outline" id="ing-btn">Show All Ingredients</button>
         </div>
-
-        <div class="natural-badge reveal-up">
-          <span>100% Natural — No Harsh Chemicals</span>
-        </div>
-
-        <div class="section-cta-strip reveal-up">
+        <div class="natural-badge rv"><span>100% Natural — No Harsh Chemicals</span></div>
+        <div class="strip rv">
           <p>Ready to experience the power of nature?</p>
-          <a href="Order.html" class="btn btn-white">Order Now</a>
+          <a href="order.html" class="btn btn-outline">Order Now</a>
         </div>
       </div>
     </section>
 
-    <!-- BEFORE & AFTER RESULTS -->
-    <section class="results-section" id="results" aria-labelledby="results-heading">
+    <!-- ═══ RESULTS ═══ -->
+    <section class="results-section" id="results">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">Transformation Stories</span>
-          <h2 class="section-title" id="results-heading">Before &amp; <em>After Results</em></h2>
-          <p class="section-sub">Real women, real transformations — no filters, no tricks.</p>
+        <div class="section-head rv">
+          <p class="eyebrow">Transformation Stories</p>
+          <h2 class="section-title">Before &amp; <em>After Results</em></h2>
+          <p class="section-body">Real women. Real transformations. No filters, no tricks.</p>
         </div>
-
         <div class="results-grid" id="results-grid">
 
-          <div class="result-card reveal-up">
-            <div class="result-images">
-              <div class="result-half result-before">
-                <img src="images/befor1.jpeg" alt="Before hair treatment" loading="lazy" />
-                <span class="result-label-half">Before</span>
-              </div>
-              <div class="result-divider"><span class="divider-pill">Before / After</span></div>
-              <div class="result-half result-after">
-                <img src="images/after1.jpeg" alt="After hair treatment" loading="lazy" />
-                <span class="result-label-half">After</span>
-              </div>
+          <div class="result-card rv">
+            <div class="result-imgs">
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/><span class="half-label">Before</span></div>
+              <div class="result-divider"><span>Before / After</span></div>
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80&auto=format&fit=crop" alt="After" loading="lazy"/><span class="half-label">After</span></div>
             </div>
-            <div class="result-info">
-              <span class="result-name">Chioma A.</span>
-              <span class="result-weeks">Used for 6 weeks</span>
-            </div>
+            <div class="result-meta"><span class="result-name">Chioma A.</span><span class="result-dur">6 weeks</span></div>
           </div>
 
-          <div class="result-card reveal-up delay-1">
-            <div class="result-images">
-              <div class="result-half result-before">
-                <img src="images/before3.jpeg" alt="Before hair treatment" loading="lazy" />
-                <span class="result-label-half">Before</span>
-              </div>
-              <div class="result-divider"><span class="divider-pill">Before / After</span></div>
-              <div class="result-half result-after">
-                <img src="images/after3.jpeg" alt="After hair treatment" loading="lazy" />
-                <span class="result-label-half">After</span>
-              </div>
+          <div class="result-card rv">
+            <div class="result-imgs">
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=400&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/><span class="half-label">Before</span></div>
+              <div class="result-divider"><span>Before / After</span></div>
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80&auto=format&fit=crop" alt="After" loading="lazy"/><span class="half-label">After</span></div>
             </div>
-            <div class="result-info">
-              <span class="result-name">Blessing O.</span>
-              <span class="result-weeks">Used for 4 weeks</span>
-            </div>
+            <div class="result-meta"><span class="result-name">Blessing O.</span><span class="result-dur">4 weeks</span></div>
           </div>
 
-          <div class="result-card reveal-up delay-2">
-            <div class="result-images">
-              <div class="result-half result-before">
-                <img src="images/before4.jpeg" alt="Before hair treatment" loading="lazy" />
-                <span class="result-label-half">Before</span>
-              </div>
-              <div class="result-divider"><span class="divider-pill">Before / After</span></div>
-              <div class="result-half result-after">
-                <img src="images/after4.jpeg" alt="After hair treatment" loading="lazy" />
-                <span class="result-label-half">After</span>
-              </div>
+          <div class="result-card rv">
+            <div class="result-imgs">
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/><span class="half-label">Before</span></div>
+              <div class="result-divider"><span>Before / After</span></div>
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1499557354967-2b2d8910bcca?w=400&q=80&auto=format&fit=crop" alt="After" loading="lazy"/><span class="half-label">After</span></div>
             </div>
-            <div class="result-info">
-              <span class="result-name">Adaeze N.</span>
-              <span class="result-weeks">Used for 8 weeks</span>
-            </div>
+            <div class="result-meta"><span class="result-name">Adaeze N.</span><span class="result-dur">8 weeks</span></div>
           </div>
 
-          <!-- Hidden results -->
-          <div class="result-card hidden-result reveal-up">
-            <div class="result-images">
-              <div class="result-half result-before">
-                <img src="images/befor5.jpeg" alt="Before hair treatment" loading="lazy" />
-                <span class="result-label-half">Before</span>
-              </div>
-              <div class="result-divider"><span class="divider-pill">Before / After</span></div>
-              <div class="result-half result-after">
-                <img src="images/after5.jpeg" alt="After hair treatment" loading="lazy" />
-                <span class="result-label-half">After</span>
-              </div>
+          <div class="result-card rv result-hidden">
+            <div class="result-imgs">
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/><span class="half-label">Before</span></div>
+              <div class="result-divider"><span>Before / After</span></div>
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&q=80&auto=format&fit=crop" alt="After" loading="lazy"/><span class="half-label">After</span></div>
             </div>
-            <div class="result-info">
-              <span class="result-name">Ngozi E.</span>
-              <span class="result-weeks">Used for 5 weeks</span>
-            </div>
+            <div class="result-meta"><span class="result-name">Ngozi E.</span><span class="result-dur">5 weeks</span></div>
           </div>
 
-          <div class="result-card hidden-result reveal-up delay-1">
-            <div class="result-images">
-              <div class="result-half result-before">
-                <img src="images/before7.jpeg" alt="Before hair treatment" loading="lazy" />
-                <span class="result-label-half">Before</span>
-              </div>
-              <div class="result-divider"><span class="divider-pill">Before / After</span></div>
-              <div class="result-half result-after">
-                <img src="images/after7.jpeg" alt="After hair treatment" loading="lazy" />
-                <span class="result-label-half">After</span>
-              </div>
+          <div class="result-card rv result-hidden">
+            <div class="result-imgs">
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=400&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/><span class="half-label">Before</span></div>
+              <div class="result-divider"><span>Before / After</span></div>
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80&auto=format&fit=crop" alt="After" loading="lazy"/><span class="half-label">After</span></div>
             </div>
-            <div class="result-info">
-              <span class="result-name">Funmi B.</span>
-              <span class="result-weeks">Used for 10 weeks</span>
-            </div>
+            <div class="result-meta"><span class="result-name">Funmi B.</span><span class="result-dur">10 weeks</span></div>
           </div>
 
-          <div class="result-card hidden-result reveal-up delay-2">
-            <div class="result-images">
-              <div class="result-half result-before">
-                <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80&auto=format&fit=crop" alt="Before hair treatment" loading="lazy" />
-                <span class="result-label-half">Before</span>
-              </div>
-              <div class="result-divider"><span class="divider-pill">Before / After</span></div>
-              <div class="result-half result-after">
-                <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80&auto=format&fit=crop" alt="After hair treatment" loading="lazy" />
-                <span class="result-label-half">After</span>
-              </div>
+          <div class="result-card rv result-hidden">
+            <div class="result-imgs">
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80&auto=format&fit=crop" alt="Before" loading="lazy"/><span class="half-label">Before</span></div>
+              <div class="result-divider"><span>Before / After</span></div>
+              <div class="result-half"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400&q=80&auto=format&fit=crop" alt="After" loading="lazy"/><span class="half-label">After</span></div>
             </div>
-            <div class="result-info">
-              <span class="result-name">Yewande T.</span>
-              <span class="result-weeks">Used for 7 weeks</span>
-            </div>
+            <div class="result-meta"><span class="result-name">Yewande T.</span><span class="result-dur">7 weeks</span></div>
           </div>
 
         </div>
-
-        <div class="results-toggle-wrap reveal-up">
-          <button class="btn btn-ghost" id="results-toggle-btn">Show More Results</button>
+        <div class="results-toggle rv">
+          <button class="btn btn-outline" id="results-btn">Show More Results</button>
         </div>
-
-        <div class="section-cta-strip reveal-up">
+        <div class="strip rv">
           <p>Your transformation starts with one bottle.</p>
-          <a href="Order.html" class="btn btn-white">Order Now</a>
+          <a href="order.html" class="btn btn-outline">Order Now</a>
         </div>
       </div>
     </section>
 
-    <!-- VIDEO SECTION -->
-    <section class="video-section" id="video" aria-labelledby="video-heading">
+    <!-- ═══ TESTIMONIALS ═══ -->
+    <section class="testi-section" id="reviews">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">Our Story</span>
-          <h2 class="section-title" id="video-heading">See the <em>Magic Happen</em></h2>
-          <p class="section-sub">Watch real customers share their AG Mystique journey.</p>
+        <div class="section-head rv">
+          <p class="eyebrow">Customer Love</p>
+          <h2 class="section-title">What Our <em>Customers Say</em></h2>
         </div>
-        <div class="video-wrap reveal-up" id="video-wrap">
-          <img src="videos/video1.mp4" alt="Video thumbnail — AG Mystique Hair Story" class="video-thumb" loading="lazy" />
-          <div class="video-overlay">
-            <button class="play-btn" id="play-btn" aria-label="Play video">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="32" height="32" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-            <span class="play-caption">Watch the Story</span>
-          </div>
-        </div>
-        <div class="section-cta-strip reveal-up">
-          <p>Ready to start your own story?</p>
-          <a href="Order.html" class="btn btn-white">Order Now</a>
-        </div>
-      </div>
-    </section>
+        <div class="testi-wrap rv">
+          <div class="testi-track" id="testi-track">
 
-    <!-- TESTIMONIALS SLIDER -->
-    <section class="testimonials-section" id="reviews" aria-labelledby="reviews-heading">
-      <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">Customer Love</span>
-          <h2 class="section-title" id="reviews-heading">What Our <em>Customers Say</em></h2>
-        </div>
-        <div class="testimonials-wrapper reveal-up" id="testimonials-wrapper">
-          <div class="testimonials-track" id="testimonials-track">
-
-            <div class="testimonial-card" role="group" aria-label="Testimonial 1">
-              <p class="testimonial-quote">"I had given up hope on my hair after trying so many products. AG Mystique changed everything. After just four weeks, my edges came back and my hair is now longer than it has ever been."</p>
-              <div class="testimonial-author">
-                <img src="https://i.pinimg.com/1200x/e6/73/d1/e673d1c70865841d123850c2130a19ec.jpg" alt="Chidinma U." class="author-avatar" loading="lazy" />
-                <div class="author-info">
-                  <span class="author-name">Chidinma U.</span>
-                  <span class="author-city">Lagos, Nigeria</span>
+            <div class="testi-card">
+              <p class="testi-quote">"I had given up hope on my hair after trying so many products. AG Mystique changed everything. After just four weeks, my edges came back and my hair is longer than it has ever been."</p>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&q=80&auto=format&fit=crop" alt="Chidinma U." class="testi-avatar" loading="lazy"/>
+                <div>
+                  <span class="testi-name">Chidinma U.</span>
+                  <span class="testi-city">Lagos, Nigeria</span>
                 </div>
-                <div class="author-stars" aria-label="5 stars">
-                  <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
+                <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
             </div>
 
-            <div class="testimonial-card" role="group" aria-label="Testimonial 2">
-              <p class="testimonial-quote">"My sister recommended AG Mystique and I am so glad she did. The oil absorbs without leaving any grease, my scalp feels healthy, and I can actually see tiny new hairs growing all around my crown."</p>
-              <div class="testimonial-author">
-                <img src="https://i.pinimg.com/1200x/35/f3/e7/35f3e7293640fe5be8fa47ad144f0a01.jpg" alt="Tolu A." class="author-avatar" loading="lazy" />
-                <div class="author-info">
-                  <span class="author-name">Tolu A.</span>
-                  <span class="author-city">Abuja, Nigeria</span>
+            <div class="testi-card">
+              <p class="testi-quote">"The oil absorbs without leaving any grease. My scalp feels healthy and I can actually see tiny new hairs growing all around my crown. I will never stop using this."</p>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&q=80&auto=format&fit=crop" alt="Tolu A." class="testi-avatar" loading="lazy"/>
+                <div>
+                  <span class="testi-name">Tolu A.</span>
+                  <span class="testi-city">Abuja, Nigeria</span>
                 </div>
-                <div class="author-stars" aria-label="5 stars">
-                  <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
+                <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
             </div>
 
-            <div class="testimonial-card" role="group" aria-label="Testimonial 3">
-              <p class="testimonial-quote">"I have been using AG Mystique for three months now. My hair is thicker, my scalp no longer itches, and the breakage that used to frustrate me every wash day is completely gone. Worth every naira."</p>
-              <div class="testimonial-author">
-                <img src="https://i.pinimg.com/1200x/d1/be/58/d1be58d19af906a20cb3d227701205e3.jpg" alt="Amara I." class="author-avatar" loading="lazy" />
-                <div class="author-info">
-                  <span class="author-name">Amara I.</span>
-                  <span class="author-city">Port Harcourt, Nigeria</span>
+            <div class="testi-card">
+              <p class="testi-quote">"Three months of using AG Mystique. My hair is thicker, my scalp no longer itches, and the breakage that used to frustrate me every wash day is completely gone. Worth every naira."</p>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&q=80&auto=format&fit=crop" alt="Amara I." class="testi-avatar" loading="lazy"/>
+                <div>
+                  <span class="testi-name">Amara I.</span>
+                  <span class="testi-city">Port Harcourt, Nigeria</span>
                 </div>
-                <div class="author-stars" aria-label="5 stars">
-                  <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
+                <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
             </div>
 
-            <div class="testimonial-card" role="group" aria-label="Testimonial 4">
-              <p class="testimonial-quote">"Ordering was so easy and delivery to Uyo was fast. The oil has a beautiful scent, it is light, and my hair has responded incredibly well. I have already ordered the two-bottle bundle for myself and my daughter."</p>
-              <div class="testimonial-author">
-                <img src="https://i.pinimg.com/1200x/3a/d3/8f/3ad38fec51c2b61abe4966d73b84ccae.jpg" alt="Eno B." class="author-avatar" loading="lazy" />
-                <div class="author-info">
-                  <span class="author-name">Eno B.</span>
-                  <span class="author-city">Uyo, Akwa Ibom</span>
+            <div class="testi-card">
+              <p class="testi-quote">"Ordering was easy and delivery to Uyo was fast. The oil is light and beautiful. My hair has responded incredibly well. I have already ordered the bundle for myself and my daughter."</p>
+              <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=100&q=80&auto=format&fit=crop" alt="Eno B." class="testi-avatar" loading="lazy"/>
+                <div>
+                  <span class="testi-name">Eno B.</span>
+                  <span class="testi-city">Uyo, Akwa Ibom</span>
                 </div>
-                <div class="author-stars" aria-label="5 stars">
-                  <span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                </div>
+                <div class="testi-stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
               </div>
             </div>
 
           </div>
           <div class="testi-controls">
-            <button class="testi-arrow testi-prev" id="testi-prev" aria-label="Previous testimonial">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <div class="testi-dots" id="testi-dots" role="tablist" aria-label="Testimonial navigation">
-              <button class="dot active" role="tab" aria-selected="true" data-index="0" aria-label="Go to testimonial 1"></button>
-              <button class="dot" role="tab" aria-selected="false" data-index="1" aria-label="Go to testimonial 2"></button>
-              <button class="dot" role="tab" aria-selected="false" data-index="2" aria-label="Go to testimonial 3"></button>
-              <button class="dot" role="tab" aria-selected="false" data-index="3" aria-label="Go to testimonial 4"></button>
+            <button class="t-arrow" id="t-prev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg></button>
+            <div class="t-dots" id="t-dots" role="tablist">
+              <button class="tdot active" data-i="0" role="tab" aria-selected="true"></button>
+              <button class="tdot" data-i="1" role="tab" aria-selected="false"></button>
+              <button class="tdot" data-i="2" role="tab" aria-selected="false"></button>
+              <button class="tdot" data-i="3" role="tab" aria-selected="false"></button>
             </div>
-            <button class="testi-arrow testi-next" id="testi-next" aria-label="Next testimonial">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
+            <button class="t-arrow" id="t-next" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg></button>
           </div>
         </div>
-
-        <div class="section-cta-strip reveal-up">
+        <div class="strip rv">
           <p>Join over 2,400 happy customers.</p>
-          <a href="Order.html" class="btn btn-white">Order Now</a>
+          <a href="order.html" class="btn btn-outline">Order Now</a>
         </div>
       </div>
     </section>
 
-    <!-- COMMUNITY REVIEWS -->
-    <section class="community-section" id="community" aria-labelledby="community-heading">
+    <!-- ═══ COMMUNITY REVIEWS ═══ -->
+    <section class="community-section" id="community">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">Community</span>
-          <h2 class="section-title" id="community-heading">Share Your <em>Experience</em></h2>
+        <div class="section-head rv">
+          <p class="eyebrow">Community</p>
+          <h2 class="section-title">Share Your <em>Experience</em></h2>
         </div>
         <div class="community-layout">
-          <div class="community-form-col reveal-up">
-            <div class="community-form-card">
-              <h3 class="form-title">Leave a Review</h3>
-              <p class="form-sub">Your experience helps other women make confident decisions.</p>
-              <div class="review-form" id="review-form">
-                <div class="form-group">
-                  <label class="form-label" for="review-name">Your Name</label>
-                  <input type="text" id="review-name" class="form-input" placeholder="e.g. Chioma A." autocomplete="name" />
-                </div>
-                <div class="form-group">
-                  <label class="form-label" for="review-comment">Your Review</label>
-                  <textarea id="review-comment" class="form-textarea" rows="5" placeholder="Share your experience with AG Mystique..."></textarea>
-                </div>
-                <button class="btn btn-white btn-full" id="review-submit">Submit Review</button>
-                <p class="form-success" id="form-success" aria-live="polite"></p>
+          <div class="comm-form-col rv">
+            <div class="comm-form-card">
+              <h3 class="comm-form-title">Leave a Review</h3>
+              <p class="comm-form-sub">Your experience helps other women make confident decisions.</p>
+              <div class="form-group">
+                <label class="form-label" for="r-name">Your Name</label>
+                <input type="text" id="r-name" class="form-input" placeholder="e.g. Chioma A."/>
               </div>
+              <div class="form-group">
+                <label class="form-label" for="r-comment">Your Review</label>
+                <textarea id="r-comment" class="form-textarea" rows="4" placeholder="Share your AG Mystique experience..."></textarea>
+              </div>
+              <button class="btn btn-fill btn-full" id="r-submit">Submit Review</button>
+              <p class="r-success" id="r-success" aria-live="polite"></p>
             </div>
           </div>
-          <div class="community-reviews-col reveal-up delay-1">
-            <h3 class="reviews-list-title">Community Reviews</h3>
-            <div class="reviews-list" id="reviews-list">
-              <!-- Populated by JS -->
-            </div>
+          <div class="comm-list-col rv">
+            <h3 class="comm-list-title">Community Reviews</h3>
+            <div class="reviews-list" id="reviews-list"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ SECTION -->
-    <section class="faq-section" id="faq" aria-labelledby="faq-heading">
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section" id="faq">
       <div class="container">
-        <div class="section-header reveal-up">
-          <span class="section-eyebrow">Common Questions</span>
-          <h2 class="section-title" id="faq-heading">Frequently Asked <em>Questions</em></h2>
-          <p class="section-sub">Everything you need to know before placing your order.</p>
+        <div class="section-head rv">
+          <p class="eyebrow">Common Questions</p>
+          <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
         </div>
-
-        <div class="faq-list reveal-up">
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>How do I pay for my order?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>We operate on a <strong>Payment on Delivery</strong> model — you pay only when your order arrives at your door. No upfront payment, no risk. The delivery agent collects payment upon successful delivery.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>How long does delivery take?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>Orders are delivered <strong>within 7 days</strong> of placement. Most customers within Akwa Ibom State and major cities receive their orders sooner. You will be contacted by our delivery team once your order is dispatched.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>Do you deliver to my location?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>We deliver across Nigeria — Lagos, Abuja, Port Harcourt, Enugu, Kano, Ibadan, and everywhere in between. If you are unsure about delivery to your area, message us on WhatsApp before placing your order and we will confirm.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>How quickly will I see results?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>Most customers report <strong>visible results within 4 weeks</strong> of consistent use — reduced breakage, improved scalp health, and new growth. For more advanced concerns like thinning edges or hair loss, we recommend the full 8-week course with the 2-bottle bundle.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>Is AG Mystique safe for all hair types?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>Yes. AG Mystique is formulated with 100% natural ingredients and contains no parabens, sulphates, or harsh chemicals. It is suitable for all hair types — natural, relaxed, low porosity, high porosity — and safe for both men and women.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>What is the difference between Original and Intensive?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>The <strong>Original formula</strong> is ideal for general hair nourishment, shine, and maintenance. The <strong>Intensive formula</strong> contains a higher concentration of active growth ingredients and is specifically designed for those experiencing significant thinning, hair loss, or slow growth. If in doubt, the 2-bottle bundle lets you try both.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>How do I place an order?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>You can order directly through our website by clicking any <strong>Order Now</strong> button, or you can message us on <strong>WhatsApp at 08024547273</strong> and our team will guide you through the process. We accept payment on delivery — no card or bank transfer needed before your order arrives.</p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-              <span>Can I return my order if I am not satisfied?</span>
-              <span class="faq-icon" aria-hidden="true"></span>
-            </button>
-            <div class="faq-answer">
-              <p>Because we offer payment on delivery, you have the opportunity to inspect your order before paying. Once accepted and paid for, we are unable to process returns. However, if your order arrives damaged or incorrect, please contact us immediately and we will resolve it.</p>
-            </div>
-          </div>
-
+        <div class="faq-list rv">
+          <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How do I pay for my order?</span><span class="faq-icon"></span></button><div class="faq-a"><p>We accept <strong>cash on delivery</strong> and <strong>bank transfer</strong>. No upfront payment is required. You pay only when your order arrives at your door.</p></div></div>
+          <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How long does delivery take?</span><span class="faq-icon"></span></button><div class="faq-a"><p>Orders are delivered <strong>within 1 to 9 days</strong> of placement. Most customers within Akwa Ibom and major cities receive their orders sooner. Our delivery team will contact you once your order is dispatched.</p></div></div>
+          <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Do you deliver to my location?</span><span class="faq-icon"></span></button><div class="faq-a"><p>We deliver across all 36 states in Nigeria. If you are unsure about delivery to your specific area, message us on WhatsApp before ordering and we will confirm.</p></div></div>
+          <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How quickly will I see results?</span><span class="faq-icon"></span></button><div class="faq-a"><p>Most customers report <strong>visible results within 4 weeks</strong> — reduced breakage, improved scalp health, and new growth. For advanced concerns, we recommend the full 8-week course with the 2-bottle bundle.</p></div></div>
+          <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is AG Mystique safe for all hair types?</span><span class="faq-icon"></span></button><div class="faq-a"><p>Yes. AG Mystique contains no parabens, sulphates, or harsh chemicals. It is suitable for all hair types — natural, relaxed, low porosity, high porosity — and safe for both men and women.</p></div></div>
+          <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>What is the difference between Original and Intensive?</span><span class="faq-icon"></span></button><div class="faq-a"><p>The <strong>Original</strong> is ideal for general nourishment and maintenance. The <strong>Intensive</strong> has a higher concentration of active ingredients for significant thinning or hair loss. The 2-bottle bundle lets you try both.</p></div></div>
+          <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>How do I place an order?</span><span class="faq-icon"></span></button><div class="faq-a"><p>Click any <strong>Order Now</strong> button to fill the order form, or message us on <strong>WhatsApp at 0904 386 5300</strong>. Your order is then confirmed via WhatsApp. Payment is made on delivery.</p></div></div>
         </div>
-
-        <div class="section-cta-strip reveal-up">
-          <p>Still have questions? We are happy to help.</p>
-          <a href="Order.html" class="btn btn-white">Order Now</a>
+        <div class="strip rv">
+          <p>Still have questions?</p>
+          <a href="https://wa.me/2349043865300?text=Hello%2C%20I%20have%20a%20question%20about%20AG%20Mystique%20Hair%20Solutions" class="btn btn-wa" target="_blank" rel="noopener">Chat on WhatsApp</a>
         </div>
       </div>
     </section>
 
-    <!-- CONTACT / FINAL CTA -->
-    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+    <!-- ═══ CONTACT ═══ -->
+    <section class="contact-section" id="contact">
       <div class="container">
         <div class="contact-layout">
-          <div class="contact-info-col reveal-up">
-            <span class="section-eyebrow">Get In Touch</span>
-            <h2 class="section-title" id="contact-heading">We Are Here <em>For You</em></h2>
-            <p class="contact-body">Have questions? Ready to transform your hair? Reach out — our team responds to every message personally.</p>
+          <div class="contact-info rv">
+            <p class="eyebrow">Get In Touch</p>
+            <h2 class="section-title">We Are Here <em>For You</em></h2>
+            <p class="contact-body">Have questions? Ready to transform your hair? Our team responds to every message personally.</p>
             <div class="contact-rows">
               <a href="tel:09043865300" class="contact-row">
-                <span class="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.6A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
-                </span>
-                <span>09043865300</span>
+                <span class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.6A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14v2.92z"/></svg></span>
+                0904 386 5300
               </a>
               <a href="mailto:agmystiquesolutions@gmail.com" class="contact-row">
-                <span class="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                </span>
-                <span>agmystiquesolutions@gmail.com</span>
+                <span class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+                agmystiquesolutions@gmail.com
               </a>
               <div class="contact-row">
-                <span class="contact-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                </span>
-                <span>Uyo, Akwa Ibom, Nigeria</span>
+                <span class="c-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                Uyo, Akwa Ibom, Nigeria
               </div>
             </div>
-            <a href="https://www.healthline.com/health/beauty-skin-care/how-to-grow-hair-faster" class="contact-resource-link" target="_blank" rel="noopener">How to maintain healthy hair growth &rarr;</a>
+            <a href="https://www.healthline.com/health/beauty-skin-care/how-to-grow-hair-faster" class="resource-link" target="_blank" rel="noopener">How to maintain healthy hair growth &rarr;</a>
           </div>
-          <div class="contact-cta-col reveal-up delay-1">
-            <div class="contact-cta-card">
-              <h3 class="contact-cta-title">Order AG Mystique Today</h3>
-              <p class="contact-cta-sub">Free delivery available on 2-bottle orders. Order now and start your transformation within days.</p>
-              <div class="contact-cta-btns">
-                <a href="Order.html" class="btn btn-white btn-full">Order Now</a>
-                <a href="https://wa.me/2348024547273?text=Hello%2C%20I%20want%20to%20order%20AG%20Mystique%20Hair%20Solutions" class="btn btn-green btn-full" target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <div class="contact-cta rv">
+            <div class="cta-card">
+              <h3 class="cta-card-title">Order AG Mystique Today</h3>
+              <p class="cta-card-sub">Free delivery on 2-bottle orders. Pay on delivery — cash or bank transfer. Arrives within 1–9 days.</p>
+              <div class="cta-card-btns">
+                <a href="order.html" class="btn btn-fill btn-full">Order Now</a>
+                <a href="https://wa.me/2349043865300?text=Hello%2C%20I%20want%20to%20order%20AG%20Mystique%20Hair%20Solutions" class="btn btn-wa btn-full" target="_blank" rel="noopener">Chat on WhatsApp</a>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
+  <!-- ═══ FOOTER ═══ -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-col footer-brand">
-          <a href="#" class="nav-logo footer-logo">
-            <span class="logo-main">AG Mystique</span>
-            <span class="logo-sub">Hair Solutions</span>
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-mark">AG</span>
+            <span class="logo-text">
+              <span class="logo-main">Mystique</span>
+              <span class="logo-sub">Hair Solutions</span>
+            </span>
           </a>
           <p class="footer-desc">Premium natural hair growth oil crafted in Uyo, Akwa Ibom. We believe every woman deserves the hair she dreams of.</p>
         </div>
         <div class="footer-col">
-          <h4 class="footer-col-title">Explore</h4>
+          <h4 class="footer-col-h">Explore</h4>
           <ul class="footer-links">
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#product">Products</a></li>
             <li><a href="#ingredients">Ingredients</a></li>
             <li><a href="#results">Results</a></li>
-            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4 class="footer-col-title">Contact</h4>
+          <h4 class="footer-col-h">Contact</h4>
           <ul class="footer-links">
-            <li><a href="tel:09043865300">09043865300</a></li>
+            <li><a href="tel:09043865300">0904 386 5300</a></li>
             <li><a href="mailto:agmystiquesolutions@gmail.com">agmystiquesolutions@gmail.com</a></li>
-            <li><span>Uyo, Akwa Ibom, Nigeria</span></li>
+            <li>Uyo, Akwa Ibom, Nigeria</li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4 class="footer-col-title">Order</h4>
+          <h4 class="footer-col-h">Order</h4>
           <ul class="footer-links">
-            <li><a href="Order.html">Order Online</a></li>
+            <li><a href="order.html">Order Online</a></li>
             <li><a href="#pricing">View Pricing</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
@@ -837,17 +637,17 @@
       </div>
       <div class="footer-bottom">
         <p>&copy; <span id="footer-year"></span> AG Mystique Hair Solutions. All rights reserved.</p>
-        <a href="https://www.healthline.com/health/beauty-skin-care/how-to-grow-hair-faster" target="_blank" rel="noopener" class="footer-resource">Hair Growth Resources</a>
+        <a href="https://www.healthline.com/health/beauty-skin-care/how-to-grow-hair-faster" target="_blank" rel="noopener" class="footer-res">Hair Growth Resources</a>
       </div>
     </div>
   </footer>
 
   <!-- FLOATING BUTTONS -->
-  <a href="https://wa.me/2348024547273?text=Hello%2C%20I%20want%20to%20order%20AG%20Mystique%20Hair%20Solutions" class="float-whatsapp" id="float-whatsapp" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <a href="https://wa.me/2349043865300?text=Hello%2C%20I%20want%20to%20order%20AG%20Mystique%20Hair%20Solutions" class="float-wa" id="float-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
-  <button class="float-backtop" id="float-backtop" aria-label="Back to top">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="20" height="20" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  <button class="float-top" id="float-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
 
   <script src="script.js"></script>
