@@ -1,610 +1,435 @@
 /* ============================================================
-   AG MYSTIQUE HAIR SOLUTIONS — SCRIPT.JS
-   Vanilla JS — no external libraries
+   AG MYSTIQUE v2 — SCRIPT.JS
    ============================================================ */
-
 'use strict';
 
-/* ============================================================
-   UTILITY
-   ============================================================ */
-const $ = (sel, ctx = document) => ctx.querySelector(sel);
-const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
 
-/* ============================================================
-   FOOTER YEAR
-   ============================================================ */
-const yearEl = $('#footer-year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* ── FOOTER YEAR ── */
+const fy = $('#footer-year');
+if (fy) fy.textContent = new Date().getFullYear();
 
-/* ============================================================
-   SCROLL REVEAL — IntersectionObserver
-   ============================================================ */
+/* ── THEME SWITCHER ── */
+(function initTheme() {
+  const html     = document.documentElement;
+  const switcher = $('#theme-switcher');
+  const btns     = $$('.theme-btn');
+  const STORAGE  = 'agm_theme';
+
+  const saved = localStorage.getItem(STORAGE) || 'light';
+  setTheme(saved, false);
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => setTheme(btn.dataset.theme, true));
+  });
+
+  function setTheme(theme, save) {
+    html.setAttribute('data-theme', theme);
+    btns.forEach(b => b.classList.toggle('active', b.dataset.theme === theme));
+    if (save) localStorage.setItem(STORAGE, theme);
+  }
+})();
+
+/* ── SCROLL REVEAL ── */
 (function initReveal() {
-  const items = $$('.reveal-up');
-  if (!items.length) return;
+  const els = $$('.rv');
+  if (!els.length) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+  // Stagger children in grids
+  ['.proof-grid', '.pricing-grid', '.products-grid', '.ing-grid', '.results-grid', '.faq-list'].forEach(sel => {
+    const parent = $(sel);
+    if (!parent) return;
+    $$('.rv', parent).forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.08) + 's';
     });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  });
 
-  items.forEach(el => observer.observe(el));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+  els.forEach(el => obs.observe(el));
 })();
 
-/* ============================================================
-   NAVBAR — SCROLL STATE + ACTIVE LINK
-   ============================================================ */
+/* ── NAVBAR ── */
 (function initNavbar() {
-  const navbar = $('#navbar');
-  if (!navbar) return;
-
+  const nav      = $('#navbar');
+  const links    = $$('.nav-link');
   const sections = $$('main section[id]');
-  const navLinks = $$('.nav-link');
+  if (!nav) return;
 
-  // Scroll frosted state
-  let lastScroll = 0;
-
-  function updateNavbar() {
-    const scrollY = window.scrollY;
-
-    if (scrollY > 10) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-
-    // Active section highlight
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 100;
-      if (scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-
-    lastScroll = scrollY;
+  function update() {
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${cur}`));
   }
 
-  window.addEventListener('scroll', updateNavbar, { passive: true });
-  updateNavbar();
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 })();
 
-/* ============================================================
-   HAMBURGER MENU
-   ============================================================ */
-(function initMobileMenu() {
-  const hamburger = $('#hamburger');
-  const mobileMenu = $('#mobile-menu');
-  if (!hamburger || !mobileMenu) return;
+/* ── HAMBURGER ── */
+(function initHamburger() {
+  const btn  = $('#hamburger');
+  const menu = $('#mob-menu');
+  if (!btn || !menu) return;
 
-  const mobileLinks = $$('.mobile-nav-link');
+  const links = $$('.mob-link');
 
-  function openMenu() {
-    hamburger.classList.add('open');
-    hamburger.setAttribute('aria-expanded', 'true');
-    mobileMenu.classList.add('open');
-    mobileMenu.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('menu-open');
-  }
+  function open()  { btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); document.body.classList.add('menu-open'); }
+  function close() { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); document.body.classList.remove('menu-open'); }
 
-  function closeMenu() {
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    mobileMenu.classList.remove('open');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('menu-open');
-  }
-
-  hamburger.addEventListener('click', () => {
-    if (mobileMenu.classList.contains('open')) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Close on overlay tap
-  const overlay = mobileMenu.querySelector('.mobile-menu-overlay');
-  if (overlay) overlay.addEventListener('click', closeMenu);
-
-  // Escape key
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
-  });
+  btn.addEventListener('click', () => menu.classList.contains('open') ? close() : open());
+  links.forEach(l => l.addEventListener('click', close));
+  $('.mob-bg', menu)?.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
 
-/* ============================================================
-   HERO SLIDER
-   ============================================================ */
-(function initHeroSlider() {
+/* ── HERO SLIDER ── */
+(function initHero() {
   const slides = $$('.slide');
-  const dots = $$('.slider-dots .dot');
+  const dots   = $$('.hdot');
   if (!slides.length) return;
 
-  let current = 0;
-  let timer = null;
-  const INTERVAL = 5500;
+  let cur = 0, timer = null;
+  const DUR = 5800;
 
-  function resetTextAnim(slide) {
-    slide.querySelectorAll('.slide-text-anim').forEach(el => {
+  function resetText(slide) {
+    slide.querySelectorAll('.hero-text > *').forEach(el => {
       el.style.transition = 'none';
       el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
+      el.style.transform = 'translateY(22px)';
     });
   }
 
-  function goTo(index) {
-    // Fade out current
-    const leaving = slides[current];
-    leaving.querySelectorAll('.slide-text-anim').forEach(el => {
-      el.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+  function goTo(idx) {
+    const leaving = slides[cur];
+
+    // Fade out leaving text
+    leaving.querySelectorAll('.hero-text > *').forEach(el => {
+      el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
       el.style.transitionDelay = '0s';
       el.style.opacity = '0';
-      el.style.transform = 'translateY(-12px)';
+      el.style.transform = 'translateY(-14px)';
     });
 
     setTimeout(() => {
       leaving.classList.remove('active');
-      dots[current].classList.remove('active');
-      dots[current].setAttribute('aria-selected', 'false');
+      dots[cur].classList.remove('active');
+      dots[cur].setAttribute('aria-selected', 'false');
 
-      current = index;
-      const entering = slides[current];
-      resetTextAnim(entering);
+      cur = idx;
+      const entering = slides[cur];
+      resetText(entering);
       entering.classList.add('active');
-      dots[current].classList.add('active');
-      dots[current].setAttribute('aria-selected', 'true');
+      dots[cur].classList.add('active');
+      dots[cur].setAttribute('aria-selected', 'true');
 
-      // Force reflow then animate in
-      entering.querySelectorAll('.slide-text-anim').forEach((el, i) => {
+      const delays = [0.18, 0.30, 0.44, 0.56];
+      entering.querySelectorAll('.hero-text > *').forEach((el, i) => {
         void el.offsetWidth;
-        const delays = [0.15, 0.28, 0.40, 0.52];
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        el.style.transitionDelay = (delays[i] || 0.15) + 's';
+        el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+        el.style.transitionDelay = (delays[i] || 0.2) + 's';
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
       });
-    }, 380);
+    }, 340);
   }
 
-  function next() { goTo((current + 1) % slides.length); }
-
-  function startAuto() {
-    clearInterval(timer);
-    timer = setInterval(next, INTERVAL);
-  }
+  function next() { goTo((cur + 1) % slides.length); }
+  function startAuto() { clearInterval(timer); timer = setInterval(next, DUR); }
 
   // Init first slide text
-  slides[0].querySelectorAll('.slide-text-anim').forEach((el, i) => {
-    const delays = [0.15, 0.28, 0.40, 0.52];
-    el.style.transitionDelay = (delays[i] || 0.15) + 's';
+  slides[0].querySelectorAll('.hero-text > *').forEach((el, i) => {
+    const delays = [0.18, 0.30, 0.44, 0.56];
+    el.style.transitionDelay = (delays[i] || 0.2) + 's';
     el.style.opacity = '1';
     el.style.transform = 'translateY(0)';
   });
 
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const idx = parseInt(dot.dataset.index, 10);
-      if (idx === current) return;
-      goTo(idx);
-      startAuto();
-    });
-  });
+  dots.forEach(d => d.addEventListener('click', () => {
+    const i = parseInt(d.dataset.i);
+    if (i !== cur) { goTo(i); startAuto(); }
+  }));
+
+  // Touch swipe
+  let tx = 0;
+  const hw = $('.hero-slides');
+  if (hw) {
+    hw.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; }, { passive: true });
+    hw.addEventListener('touchend',   e => {
+      const diff = tx - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 44) { goTo(diff > 0 ? (cur + 1) % slides.length : (cur - 1 + slides.length) % slides.length); startAuto(); }
+    }, { passive: true });
+  }
 
   startAuto();
 })();
 
-/* ============================================================
-   COUNTDOWN TIMER — localStorage persisted
-   ============================================================ */
+/* ── COUNTDOWN ── */
 (function initCountdown() {
-  const hoursEl = $('#cd-hours');
-  const minsEl  = $('#cd-mins');
-  const secsEl  = $('#cd-secs');
-  if (!hoursEl) return;
-
-  const STORAGE_KEY = 'agm_countdown_end';
-  const DURATION_MS = 12 * 60 * 60 * 1000; // 12 hours
-
-  let endTime = parseInt(localStorage.getItem(STORAGE_KEY), 10);
-
-  if (!endTime || endTime <= Date.now()) {
-    endTime = Date.now() + DURATION_MS;
-    localStorage.setItem(STORAGE_KEY, endTime);
-  }
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
+  const H = $('#cd-h'), M = $('#cd-m'), S = $('#cd-s');
+  if (!H) return;
+  const KEY = 'agm_cd_v2';
+  const DUR = 12 * 3600 * 1000;
+  let end = parseInt(localStorage.getItem(KEY), 10);
+  if (!end || end <= Date.now()) { end = Date.now() + DUR; localStorage.setItem(KEY, end); }
+  const pad = n => String(n).padStart(2, '0');
   function tick() {
-    const diff = Math.max(0, endTime - Date.now());
-    const hours = Math.floor(diff / 3600000);
-    const mins  = Math.floor((diff % 3600000) / 60000);
-    const secs  = Math.floor((diff % 60000) / 1000);
-
-    hoursEl.textContent = pad(hours);
-    minsEl.textContent  = pad(mins);
-    secsEl.textContent  = pad(secs);
-
-    if (diff === 0) {
-      // Reset timer
-      endTime = Date.now() + DURATION_MS;
-      localStorage.setItem(STORAGE_KEY, endTime);
-    }
+    const d = Math.max(0, end - Date.now());
+    H.textContent = pad(Math.floor(d / 3600000));
+    M.textContent = pad(Math.floor((d % 3600000) / 60000));
+    S.textContent = pad(Math.floor((d % 60000) / 1000));
+    if (d === 0) { end = Date.now() + DUR; localStorage.setItem(KEY, end); }
   }
-
-  tick();
-  setInterval(tick, 1000);
+  tick(); setInterval(tick, 1000);
 })();
 
-/* ============================================================
-   PRODUCT IMAGE LIGHTBOX
-   ============================================================ */
+/* ── LIGHTBOX ── */
 (function initLightbox() {
-  const lightbox   = $('#lightbox');
-  const lightboxImg = $('#lightbox-img');
-  const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
-  const lightboxBg  = lightbox ? lightbox.querySelector('.lightbox-bg') : null;
-  if (!lightbox || !lightboxImg) return;
+  const lb  = $('#lightbox');
+  const img = $('#lb-img');
+  if (!lb || !img) return;
 
-  function open(src, alt) {
-    lightboxImg.src = src;
-    lightboxImg.alt = alt;
-    lightbox.classList.add('open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
+  function open(src, alt) { img.src = src; img.alt = alt; lb.classList.add('open'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; }
+  function close() { lb.classList.remove('open'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; setTimeout(() => { img.src = ''; }, 350); }
 
-  function close() {
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-    setTimeout(() => { lightboxImg.src = ''; }, 400);
-  }
-
-  $$('.product-img-wrap[data-lightbox]').forEach(wrap => {
-    wrap.addEventListener('click', () => {
-      const img = wrap.querySelector('.product-img');
-      if (img) open(img.src, img.alt);
-    });
+  $$('.prod-card[data-lightbox]').forEach(card => {
+    card.addEventListener('click', () => { const i = card.querySelector('.prod-img'); if (i) open(i.src, i.alt); });
   });
-
-  if (lightboxClose) lightboxClose.addEventListener('click', close);
-  if (lightboxBg)    lightboxBg.addEventListener('click', close);
-
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && lightbox.classList.contains('open')) close();
-  });
+  $('.lb-close', lb)?.addEventListener('click', close);
+  $('.lb-bg', lb)?.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) close(); });
 })();
 
-/* ============================================================
-   INGREDIENTS TOGGLE
-   ============================================================ */
-(function initIngredientsToggle() {
-  const btn = $('#ing-toggle-btn');
-  const hiddenCards = $$('.hidden-ingredient');
-  if (!btn || !hiddenCards.length) return;
-
-  let revealed = false;
-
+/* ── INGREDIENTS TOGGLE ── */
+(function initIngredients() {
+  const btn     = $('#ing-btn');
+  const hidden  = $$('.ing-hidden');
+  if (!btn || !hidden.length) return;
+  let open = false;
   btn.addEventListener('click', () => {
-    revealed = !revealed;
-
-    hiddenCards.forEach((card, i) => {
-      if (revealed) {
-        card.classList.add('revealed');
-        // Re-trigger reveal animation with stagger
-        setTimeout(() => {
-          card.classList.add('visible');
-        }, i * 80 + 50);
-      } else {
-        card.classList.remove('revealed', 'visible');
-      }
+    open = !open;
+    hidden.forEach((c, i) => {
+      c.classList.toggle('ing-visible', open);
+      if (open) setTimeout(() => c.classList.add('in'), i * 70);
+      else c.classList.remove('in');
     });
-
-    btn.textContent = revealed ? 'Show Fewer Ingredients' : 'Show All Ingredients';
+    btn.textContent = open ? 'Show Fewer Ingredients' : 'Show All Ingredients';
   });
 })();
 
-/* ============================================================
-   BEFORE & AFTER — SHOW MORE RESULTS
-   ============================================================ */
-(function initResultsToggle() {
-  const btn = $('#results-toggle-btn');
-  const hiddenResults = $$('.hidden-result');
-  if (!btn || !hiddenResults.length) return;
-
-  let revealed = false;
-
+/* ── RESULTS TOGGLE ── */
+(function initResults() {
+  const btn    = $('#results-btn');
+  const hidden = $$('.result-hidden');
+  if (!btn || !hidden.length) return;
+  let open = false;
   btn.addEventListener('click', () => {
-    revealed = !revealed;
-
-    hiddenResults.forEach((card, i) => {
-      if (revealed) {
-        card.classList.add('revealed');
-        card.style.transitionDelay = `${i * 100}ms`;
-        setTimeout(() => {
-          card.classList.add('visible');
-        }, i * 100 + 50);
-      } else {
-        card.classList.remove('revealed', 'visible');
-        card.style.transitionDelay = '0ms';
-      }
+    open = !open;
+    hidden.forEach((c, i) => {
+      c.classList.toggle('result-shown', open);
+      if (open) { c.style.transitionDelay = (i * 0.09) + 's'; setTimeout(() => c.classList.add('in'), i * 90 + 40); }
+      else { c.classList.remove('in'); c.style.transitionDelay = '0s'; }
     });
-
-    btn.textContent = revealed ? 'Show Fewer Results' : 'Show More Results';
+    btn.textContent = open ? 'Show Fewer Results' : 'Show More Results';
   });
 })();
 
-/* ============================================================
-   VIDEO EMBED — YOUTUBE
-   ============================================================ */
-(function initVideo() {
-  const videoWrap = $('#video-wrap');
-  const playBtn   = $('#play-btn');
-  if (!videoWrap || !playBtn) return;
-
-  // Replace with actual YouTube video ID when available
-  const YOUTUBE_ID = 'dQw4w9WgXcQ';
-
-  playBtn.addEventListener('click', () => {
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&rel=0`;
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.title = 'AG Mystique Hair Solutions — Watch the Story';
-    videoWrap.appendChild(iframe);
-
-    // Hide overlay
-    const overlay = videoWrap.querySelector('.video-overlay');
-    if (overlay) overlay.style.display = 'none';
-  });
-})();
-
-/* ============================================================
-   TESTIMONIALS SLIDER — SWIPE + AUTO
-   ============================================================ */
-(function initTestimonials() {
-  const track  = $('#testimonials-track');
-  const dots   = $$('#testi-dots .dot');
-  const prevBtn = $('#testi-prev');
-  const nextBtn = $('#testi-next');
+/* ── TESTIMONIALS ── */
+(function initTestis() {
+  const track = $('#testi-track');
+  const dots  = $$('#t-dots .tdot');
+  const prev  = $('#t-prev');
+  const next  = $('#t-next');
   if (!track) return;
 
-  const cards = $$('.testimonial-card', track);
-  const total = cards.length;
-  let current = 0;
-  let timer = null;
-  const INTERVAL = 5200;
+  const cards = $$('.testi-card', track);
+  let cur = 0, timer = null;
+  const DUR = 5400;
 
-  // Touch / swipe state
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  function goTo(index) {
-    current = (index + total) % total;
-    track.style.transform = `translateX(-${current * 100}%)`;
-
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === current);
-      dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
-    });
+  function goTo(i) {
+    cur = (i + cards.length) % cards.length;
+    track.style.transform = `translateX(-${cur * 100}%)`;
+    dots.forEach((d, j) => { d.classList.toggle('active', j === cur); d.setAttribute('aria-selected', j === cur ? 'true' : 'false'); });
   }
+  function startAuto() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), DUR); }
 
-  function next() { goTo(current + 1); }
-  function prev() { goTo(current - 1); }
+  prev?.addEventListener('click', () => { goTo(cur - 1); startAuto(); });
+  next?.addEventListener('click', () => { goTo(cur + 1); startAuto(); });
+  dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.i)); startAuto(); }));
 
-  function startAuto() {
-    clearInterval(timer);
-    timer = setInterval(next, INTERVAL);
-  }
-
-  nextBtn && nextBtn.addEventListener('click', () => { next(); startAuto(); });
-  prevBtn && prevBtn.addEventListener('click', () => { prev(); startAuto(); });
-
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      goTo(parseInt(dot.dataset.index, 10));
-      startAuto();
-    });
-  });
-
-  // Swipe support
-  track.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 40) {
-      diff > 0 ? next() : prev();
-      startAuto();
-    }
+  // Swipe
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend',   e => {
+    const diff = tx - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { goTo(diff > 0 ? cur + 1 : cur - 1); startAuto(); }
   }, { passive: true });
 
   startAuto();
 })();
 
-/* ============================================================
-   COMMUNITY REVIEWS — localStorage
-   ============================================================ */
-(function initCommunityReviews() {
-  const form       = $('#review-form');
-  const nameInput  = $('#review-name');
-  const commentInput = $('#review-comment');
-  const submitBtn  = $('#review-submit');
-  const successMsg = $('#form-success');
-  const list       = $('#reviews-list');
-  if (!form || !list) return;
+/* ── COMMUNITY REVIEWS ── */
+(function initReviews() {
+  const list    = $('#reviews-list');
+  const nameEl  = $('#r-name');
+  const commEl  = $('#r-comment');
+  const submit  = $('#r-submit');
+  const success = $('#r-success');
+  if (!list) return;
 
-  const STORAGE_KEY = 'agm_reviews';
+  const KEY = 'agm_reviews_v2';
+  const escape = s => { const d = document.createElement('div'); d.appendChild(document.createTextNode(s)); return d.innerHTML; };
+  const fmt    = ts => new Date(ts).toLocaleDateString('en-NG', { year:'numeric', month:'short', day:'numeric' });
 
-  function getReviews() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    } catch {
-      return [];
-    }
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch { return []; }
   }
+  function save(arr) { localStorage.setItem(KEY, JSON.stringify(arr)); }
 
-  function saveReviews(reviews) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(reviews));
-  }
-
-  function formatDate(ts) {
-    return new Date(ts).toLocaleDateString('en-NG', {
-      year: 'numeric', month: 'short', day: 'numeric'
-    });
-  }
-
-  function renderReview(review) {
-    const item = document.createElement('div');
-    item.className = 'review-item';
-    item.innerHTML = `
-      <div class="review-meta">
-        <span class="review-author-name">${escapeHtml(review.name)}</span>
-        <span class="review-date">${formatDate(review.timestamp)}</span>
-      </div>
-      <p class="review-text">${escapeHtml(review.comment)}</p>
-    `;
-    return item;
-  }
-
-  function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
+  function renderOne(r) {
+    const el = document.createElement('div');
+    el.className = 'review-item';
+    el.innerHTML = `<div class="review-meta"><span class="rev-name">${escape(r.name)}</span><span class="rev-date">${fmt(r.timestamp)}</span></div><p class="rev-text">${escape(r.comment)}</p>`;
+    return el;
   }
 
   function renderAll() {
-    const reviews = getReviews();
+    const reviews = load();
     list.innerHTML = '';
-
-    if (!reviews.length) {
-      list.innerHTML = '<p class="no-reviews">Be the first to share your experience.</p>';
-      return;
-    }
-
-    // Newest first
-    [...reviews].reverse().forEach(r => {
-      list.appendChild(renderReview(r));
-    });
+    if (!reviews.length) { list.innerHTML = '<p class="no-reviews">Be the first to share your experience.</p>'; return; }
+    [...reviews].reverse().forEach(r => list.appendChild(renderOne(r)));
   }
 
-  submitBtn && submitBtn.addEventListener('click', () => {
-    const name    = nameInput.value.trim();
-    const comment = commentInput.value.trim();
-
+  submit?.addEventListener('click', () => {
+    const name = nameEl?.value.trim();
+    const comment = commEl?.value.trim();
     if (!name || !comment) {
-      successMsg.textContent = 'Please fill in both fields before submitting.';
-      successMsg.style.color = '#ff6b6b';
+      if (success) { success.style.color = '#ef4444'; success.textContent = 'Please fill in both fields.'; }
       return;
     }
-
-    const reviews = getReviews();
-    const newReview = { name, comment, timestamp: Date.now() };
-    reviews.push(newReview);
-    saveReviews(reviews);
-
-    // Clear form
-    nameInput.value = '';
-    commentInput.value = '';
-
-    successMsg.style.color = '#25D366';
-    successMsg.textContent = 'Thank you! Your review has been submitted.';
-    setTimeout(() => { successMsg.textContent = ''; }, 4000);
-
-    // Prepend new review at top
+    const reviews = load();
+    const r = { name, comment, timestamp: Date.now() };
+    reviews.push(r);
+    save(reviews);
+    if (nameEl) nameEl.value = '';
+    if (commEl) commEl.value = '';
+    if (success) { success.style.color = ''; success.textContent = 'Thank you! Your review has been posted.'; setTimeout(() => { if(success) success.textContent = ''; }, 4000); }
     const existing = list.querySelector('.no-reviews');
     if (existing) existing.remove();
-    list.insertBefore(renderReview(newReview), list.firstChild);
+    list.insertBefore(renderOne(r), list.firstChild);
   });
 
   renderAll();
 })();
 
-/* ============================================================
-   FLOATING BUTTONS — APPEAR AFTER 400px SCROLL
-   ============================================================ */
-(function initFloatingBtns() {
-  const floatWA    = $('#float-whatsapp');
-  const floatTop   = $('#float-backtop');
-  if (!floatWA) return;
-
-  function updateFloats() {
-    const scrolled = window.scrollY > 400;
-    floatWA.classList.toggle('visible', scrolled);
-    if (floatTop) floatTop.classList.toggle('visible', scrolled);
-  }
-
-  window.addEventListener('scroll', updateFloats, { passive: true });
-  updateFloats();
-
-  floatTop && floatTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-})();
-
-/* ============================================================
-   FAQ ACCORDION
-   ============================================================ */
+/* ── FAQ ACCORDION ── */
 (function initFaq() {
-  const items = $$('.faq-item');
-  if (!items.length) return;
-
-  items.forEach(item => {
-    const btn = item.querySelector('.faq-question');
-    const answer = item.querySelector('.faq-answer');
-    if (!btn || !answer) return;
-
+  $$('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-q');
+    const ans = item.querySelector('.faq-a');
+    if (!btn || !ans) return;
     btn.addEventListener('click', () => {
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-
-      // Close all others
-      items.forEach(other => {
-        const ob = other.querySelector('.faq-question');
-        const oa = other.querySelector('.faq-answer');
-        if (ob && oa && ob !== btn) {
-          ob.setAttribute('aria-expanded', 'false');
-          oa.classList.remove('open');
-        }
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      $$('.faq-item').forEach(other => {
+        other.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
+        other.querySelector('.faq-a')?.classList.remove('open');
       });
-
-      // Toggle this one
-      btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-      answer.classList.toggle('open', !isOpen);
+      if (!open) { btn.setAttribute('aria-expanded', 'true'); ans.classList.add('open'); }
     });
   });
 })();
 
-(function initSmoothScroll() {
-  document.addEventListener('click', e => {
-    const link = e.target.closest('a[href^="#"]');
-    if (!link) return;
-    const targetId = link.getAttribute('href').slice(1);
-    if (!targetId) return;
-    const target = document.getElementById(targetId);
-    if (!target) return;
-    e.preventDefault();
-    const navH = parseInt(getComputedStyle(document.documentElement)
-      .getPropertyValue('--nav-h'), 10) || 72;
-    const top = target.getBoundingClientRect().top + window.scrollY - navH;
-    window.scrollTo({ top, behavior: 'smooth' });
-  });
+/* ── FLOATING BUTTONS ── */
+(function initFloats() {
+  const wa  = $('#float-wa');
+  const top = $('#float-top');
+  const th  = $('#theme-switcher');
+
+  function update() {
+    const vis = window.scrollY > 400;
+    wa?.classList.toggle('show', vis);
+    top?.classList.toggle('show', vis);
+    th?.classList.toggle('visible', vis);
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+  top?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 })();
+
+/* ── ANIMATED COUNTERS ── */
+(function initCounters() {
+  const items = $$('.proof-item');
+  if (!items.length) return;
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el) {
+    const numEl  = el.querySelector('.proof-n');
+    if (!numEl || numEl.dataset.done) return;
+    numEl.dataset.done = '1';
+
+    const target = parseInt(numEl.dataset.count, 10);
+    const suffix = numEl.dataset.suffix || '';
+    const dur    = target > 1000 ? 1800 : 1200;
+    const start  = performance.now();
+
+    numEl.classList.add('counting');
+
+    function tick(now) {
+      const elapsed  = now - start;
+      const progress = Math.min(elapsed / dur, 1);
+      const current  = Math.floor(easeOut(progress) * target);
+
+      // Format with commas if large
+      const formatted = current >= 1000
+        ? current.toLocaleString('en-NG')
+        : String(current);
+
+      numEl.textContent = formatted + suffix;
+
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        // Final exact value
+        const finalFormatted = target >= 1000
+          ? target.toLocaleString('en-NG')
+          : String(target);
+        numEl.textContent = finalFormatted + suffix;
+        numEl.classList.remove('counting');
+      }
+    }
+
+    requestAnimationFrame(tick);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  items.forEach(item => obs.observe(item));
+})();
+
+/* ── SMOOTH SCROLL ── */
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href^="#"]');
+  if (!link) return;
+  const id = link.getAttribute('href').slice(1);
+  if (!id) return;
+  const target = document.getElementById(id);
+  if (!target) return;
+  e.preventDefault();
+  const nh = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'), 10) || 72;
+  window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - nh, behavior: 'smooth' });
+});
