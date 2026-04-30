@@ -421,6 +421,108 @@ if (fy) fy.textContent = new Date().getFullYear();
   items.forEach(item => obs.observe(item));
 })();
 
+/* ── COMMUNITY VIDEO CONTROLS ── */
+(function initVideoControls() {
+  const video      = document.getElementById('comm-video');
+  const playBtn    = document.getElementById('vid-playpause');
+  const muteBtn    = document.getElementById('vid-mute');
+  const fsBtn      = document.getElementById('vid-fullscreen');
+  const controls   = document.getElementById('comm-vid-controls');
+  if (!video || !playBtn) return;
+
+  // On mobile, always show controls (no hover)
+  function applyMobileControls() {
+    if (window.innerWidth < 1024) {
+      controls.style.opacity = '1';
+      controls.style.transform = 'translateY(0)';
+    } else {
+      controls.style.opacity = '';
+      controls.style.transform = '';
+    }
+  }
+  applyMobileControls();
+  window.addEventListener('resize', applyMobileControls, { passive: true });
+
+  // Play / Pause
+  playBtn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      playBtn.querySelector('.icon-pause').style.display = '';
+      playBtn.querySelector('.icon-play').style.display  = 'none';
+      playBtn.setAttribute('aria-label', 'Pause video');
+    } else {
+      video.pause();
+      playBtn.querySelector('.icon-pause').style.display = 'none';
+      playBtn.querySelector('.icon-play').style.display  = '';
+      playBtn.setAttribute('aria-label', 'Play video');
+    }
+  });
+
+  // Mute / Unmute
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteBtn.querySelector('.icon-muted').style.display = video.muted ? ''     : 'none';
+    muteBtn.querySelector('.icon-sound').style.display = video.muted ? 'none' : '';
+    muteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+  });
+
+  // Fullscreen
+  fsBtn && fsBtn.addEventListener('click', () => {
+    const el = video;
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen();
+    } else if (el.webkitEnterFullscreen) {
+      // iOS Safari fallback
+      el.webkitEnterFullscreen();
+    }
+  });
+
+  // Keep icon state in sync if video autopauses (e.g. tab hidden)
+  video.addEventListener('pause', () => {
+    playBtn.querySelector('.icon-pause').style.display = 'none';
+    playBtn.querySelector('.icon-play').style.display  = '';
+  });
+  video.addEventListener('play', () => {
+    playBtn.querySelector('.icon-pause').style.display = '';
+    playBtn.querySelector('.icon-play').style.display  = 'none';
+  });
+})();
+
+/* ── PRICING CARD ANIMATIONS ── */
+(function initPricingAnim() {
+  const cards = $$('.price-card--anim');
+  if (!cards.length) return;
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  cards.forEach(c => obs.observe(c));
+
+  // Tilt effect on desktop only
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      if (window.innerWidth < 768) return;
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width  - 0.5) * 10;
+      const y = ((e.clientY - rect.top)  / rect.height - 0.5) * -10;
+      card.style.transform = `translateY(-8px) scale(1.015) rotateX(${y}deg) rotateY(${x}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+})();
+
 /* ── SMOOTH SCROLL ── */
 document.addEventListener('click', e => {
   const link = e.target.closest('a[href^="#"]');

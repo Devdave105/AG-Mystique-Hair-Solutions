@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Order AG Mystique Hair Solutions — Pay on delivery or bank transfer. Arrives in 1–9 days."/>
+  <title>Place Your Order — AG Mystique Hair Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+
+/* ═══════════════════════════════════════════
+   THEME TOKENS — mirrors main site exactly
+═══════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg:         #faf8f5;
+  --bg-alt:     #f3f0ea;
+  --surface:    #ffffff;
+  --surface-2:  #f7f4ef;
+  --border:     rgba(30,20,10,0.08);
+  --border-2:   rgba(30,20,10,0.14);
+  --text:       #1c1612;
+  --text-2:     rgba(28,22,18,0.52);
+  --text-3:     rgba(28,22,18,0.28);
+  --gold:       #8b5e1a;
+  --gold-2:     rgba(139,94,26,0.09);
+  --gold-3:     rgba(139,94,26,0.05);
+  --green:      #25D366;
+  --green-d:    #1bad52;
+  --shadow:     rgba(20,12,4,0.07);
+  --shadow-lg:  rgba(20,12,4,0.13);
+  --nav-bg:     rgba(250,248,245,0.92);
+  --error:      #dc2626;
+}
+[data-theme="dark"] {
+  --bg:         #0c0c0c;
+  --bg-alt:     #131313;
+  --surface:    #181818;
+  --surface-2:  #1f1f1f;
+  --border:     rgba(255,255,255,0.07);
+  --border-2:   rgba(255,255,255,0.12);
+  --text:       #f0ede8;
+  --text-2:     rgba(240,237,232,0.55);
+  --text-3:     rgba(240,237,232,0.28);
+  --gold:       #c8a86b;
+  --gold-2:     rgba(200,168,107,0.14);
+  --gold-3:     rgba(200,168,107,0.08);
+  --green:      #25D366;
+  --green-d:    #1bad52;
+  --shadow:     rgba(0,0,0,0.5);
+  --shadow-lg:  rgba(0,0,0,0.7);
+  --nav-bg:     rgba(12,12,12,0.88);
+  --error:      #f87171;
+}
+[data-theme="warm"] {
+  --bg:         #1c1510;
+  --bg-alt:     #231a12;
+  --surface:    #2a1f15;
+  --surface-2:  #32261a;
+  --border:     rgba(220,180,120,0.1);
+  --border-2:   rgba(220,180,120,0.18);
+  --text:       #f5e8d5;
+  --text-2:     rgba(245,232,213,0.55);
+  --text-3:     rgba(245,232,213,0.28);
+  --gold:       #d4a55a;
+  --gold-2:     rgba(212,165,90,0.15);
+  --gold-3:     rgba(212,165,90,0.08);
+  --green:      #25D366;
+  --green-d:    #1bad52;
+  --shadow:     rgba(0,0,0,0.5);
+  --shadow-lg:  rgba(0,0,0,0.65);
+  --nav-bg:     rgba(28,21,16,0.9);
+  --error:      #fca5a5;
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL
+═══════════════════════════════════════════ */
+:root {
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'Jost', system-ui, sans-serif;
+  --pill:  100px;
+  --card:  14px;
+  --nav-h: 68px;
+  --px:    20px;
+  --ease:  cubic-bezier(0.4,0,0.2,1);
+  --spring:cubic-bezier(0.34,1.56,0.64,1);
+  --tt:    0.45s;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background var(--tt) var(--ease), color var(--tt) var(--ease);
+}
+body.locked { overflow: hidden; }
+img { display:block; max-width:100%; height:auto; }
+a { color:inherit; text-decoration:none; }
+ul { list-style:none; }
+button { background:none; border:none; cursor:pointer; font-family:inherit; color:inherit; }
+
+/* ═══════════════════════════════════════════
+   THEME SWITCHER
+═══════════════════════════════════════════ */
+.theme-switcher {
+  position: fixed;
+  right: 16px; bottom: 120px;
+  z-index: 900;
+  display: flex; flex-direction: column; gap: 6px;
+  padding: 7px 5px;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--pill);
+  box-shadow: 0 4px 20px var(--shadow);
+  transition: background var(--tt) var(--ease), border-color var(--tt) var(--ease);
+}
+.th-btn {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid transparent;
+  display: flex; align-items:center; justify-content:center;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.th-btn:hover { transform: scale(1.18); }
+.th-btn.on { border-color: var(--gold); }
+.th-dot { width:14px; height:14px; border-radius:50%; }
+.th-btn[data-t="light"]  .th-dot { background:#faf8f5; border:1.5px solid rgba(0,0,0,0.15); }
+.th-btn[data-t="dark"]   .th-dot { background:#1a1a1a; border:1.5px solid rgba(255,255,255,0.18); }
+.th-btn[data-t="warm"]   .th-dot { background:#2a1f14; border:1.5px solid rgba(212,165,90,0.4); }
+
+/* ═══════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════ */
+.o-nav {
+  position: sticky; top:0; z-index:800;
+  height: var(--nav-h);
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--tt) var(--ease), border-color var(--tt) var(--ease);
+}
+.o-nav-inner {
+  display: flex; align-items:center; justify-content:space-between;
+  height: var(--nav-h);
+  padding: 0 var(--px);
+  max-width: 1160px; margin: 0 auto;
+}
+.o-logo { display:flex; align-items:center; gap:10px; }
+.o-logo-mark {
+  width:34px; height:34px; border-radius:50%;
+  border: 1.5px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--serif); font-size:12px; font-weight:600;
+  color: var(--gold);
+  transition: color var(--tt) var(--ease), border-color var(--tt) var(--ease);
+  flex-shrink:0;
+}
+.o-logo-text { display:flex; flex-direction:column; line-height:1; }
+.o-logo-main { font-family:var(--serif); font-size:17px; font-weight:500; color:var(--text); transition:color var(--tt) var(--ease); }
+.o-logo-sub  { font-size:8px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-top:2px; transition:color var(--tt) var(--ease); }
+.o-nav-secure {
+  display:none; align-items:center; gap:6px;
+  font-size:12px; color:var(--text-2);
+}
+.o-nav-back {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:12px; font-weight:500; letter-spacing:.04em;
+  color:var(--text-2);
+  padding: 10px 0;
+  transition: color 0.2s var(--ease);
+}
+.o-nav-back:hover { color:var(--text); }
+.o-nav-back:hover svg { transform:translateX(-3px); }
+.o-nav-back svg { transition:transform 0.2s var(--ease); }
+
+/* ═══════════════════════════════════════════
+   PAGE
+═══════════════════════════════════════════ */
+.o-page {
+  max-width: 1160px; margin:0 auto;
+  padding: clamp(36px,6vw,68px) var(--px) clamp(56px,8vw,88px);
+}
+
+/* Header */
+.o-header {
+  text-align:center;
+  margin-bottom: clamp(28px,5vw,48px);
+  animation: fadeUp 0.65s var(--ease) both;
+}
+.o-eyebrow {
+  display:inline-block;
+  font-size:11px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:10px;
+  transition: color var(--tt) var(--ease);
+}
+.o-title {
+  font-family:var(--serif);
+  font-size:clamp(2rem,6vw,3.2rem);
+  font-weight:400; line-height:1.12;
+  margin-bottom:10px;
+}
+.o-title em { font-style:italic; color:var(--gold); }
+.o-sub { font-size:15px; color:var(--text-2); max-width:420px; margin:0 auto; }
+
+/* Trust bar */
+.trust-bar {
+  display:flex; flex-wrap:wrap; justify-content:center; gap:8px 14px;
+  margin-bottom: clamp(28px,5vw,48px);
+  animation: fadeUp 0.65s 0.1s var(--ease) both;
+}
+.trust-pill {
+  display:inline-flex; align-items:center; gap:6px;
+  font-size:12px; font-weight:500; letter-spacing:.04em;
+  color:var(--text-2);
+  padding: 6px 14px;
+  border: 1px solid var(--border); border-radius:var(--pill);
+  transition: border-color var(--tt) var(--ease), color var(--tt) var(--ease);
+}
+.trust-pill svg { color:var(--gold); flex-shrink:0; }
+
+/* ═══════════════════════════════════════════
+   ORDER LAYOUT
+═══════════════════════════════════════════ */
+.o-layout {
+  display:grid; grid-template-columns:1fr;
+  gap:24px; align-items:start;
+}
+
+/* ═══════════════════════════════════════════
+   CARDS
+═══════════════════════════════════════════ */
+.o-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--card);
+  overflow:hidden;
+  box-shadow: 0 2px 16px var(--shadow);
+  animation: fadeUp 0.65s 0.15s var(--ease) both;
+  transition: background var(--tt) var(--ease), border-color var(--tt) var(--ease), box-shadow var(--tt) var(--ease);
+}
+.o-card + .o-card { animation-delay:0.22s; }
+
+.o-card-head {
+  padding:18px 24px;
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:12px;
+  transition: border-color var(--tt) var(--ease);
+}
+.step-badge {
+  width:28px; height:28px; border-radius:50%;
+  background:var(--gold); color:#fff;
+  font-size:12px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.o-card-title {
+  font-family:var(--serif);
+  font-size:clamp(1.05rem,2.5vw,1.3rem);
+  font-weight:500;
+}
+.o-card-body { padding:22px 24px; }
+
+/* ═══════════════════════════════════════════
+   PACKAGE OPTIONS
+═══════════════════════════════════════════ */
+.pkg-options { display:flex; flex-direction:column; gap:12px; }
+
+.pkg-opt { position:relative; cursor:pointer; display:block; }
+.pkg-opt input[type="radio"] { position:absolute; opacity:0; width:0; height:0; }
+
+.pkg-inner {
+  display:grid;
+  grid-template-columns: 72px 1fr;
+  gap:14px; align-items:center;
+  padding:14px;
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  background:var(--surface-2);
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.pkg-opt:hover .pkg-inner { transform:translateY(-2px); box-shadow:0 6px 24px var(--shadow); }
+.pkg-opt input:checked + .pkg-inner {
+  border-color:var(--gold);
+  background:var(--gold-2);
+  box-shadow: 0 0 0 3px var(--gold-3);
+}
+
+.pkg-img {
+  width:72px; height:90px; border-radius:8px;
+  overflow:hidden; flex-shrink:0;
+  background:var(--bg-alt);
+}
+.pkg-img img { width:100%; height:100%; object-fit:cover; }
+
+.pkg-details { min-width:0; }
+.pkg-name {
+  font-family:var(--serif);
+  font-size:clamp(.95rem,2vw,1.15rem);
+  font-weight:500; margin-bottom:4px;
+}
+.pkg-desc { font-size:13px; color:var(--text-2); line-height:1.45; margin-bottom:8px; }
+.pkg-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.pkg-tag {
+  display:inline-flex; padding:3px 10px;
+  border-radius:var(--pill);
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+}
+.tag-pop  { background:var(--gold); color:#fff; }
+.tag-save { background:rgba(37,211,102,.13); color:#16a34a; border:1px solid rgba(37,211,102,.25); }
+.tag-info { background:var(--gold-2); color:var(--gold); border:1px solid var(--border-2); }
+.pkg-price-row {
+  display:flex; align-items:baseline; gap:8px;
+  margin-top:8px;
+}
+.pkg-price {
+  font-family:var(--serif);
+  font-size:clamp(1.15rem,2.5vw,1.4rem);
+  font-weight:500; color:var(--text);
+}
+.pkg-was {
+  font-size:12px; color:var(--text-3);
+  text-decoration:line-through;
+  font-family:var(--sans);
+}
+
+/* Radio ring */
+.pkg-ring {
+  position:absolute; top:14px; right:14px;
+  width:18px; height:18px; border-radius:50%;
+  border:1.5px solid var(--border-2);
+  display:flex; align-items:center; justify-content:center;
+  transition: border-color 0.2s var(--ease);
+}
+.pkg-ring::after {
+  content:''; width:8px; height:8px; border-radius:50%;
+  background:var(--gold); opacity:0;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--spring);
+  transform:scale(.4);
+}
+.pkg-opt input:checked ~ .pkg-ring { border-color:var(--gold); }
+.pkg-opt input:checked ~ .pkg-ring::after { opacity:1; transform:scale(1); }
+
+/* Quantity */
+.qty-row {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:18px; padding-top:18px;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap; gap:10px;
+  transition: border-color var(--tt) var(--ease);
+}
+.qty-label { font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-2); }
+.qty-ctrl {
+  display:flex; align-items:center;
+  border:1px solid var(--border-2); border-radius:var(--pill);
+  overflow:hidden; background:var(--surface-2);
+  transition: border-color var(--tt) var(--ease), background var(--tt) var(--ease);
+}
+.qty-btn {
+  width:40px; height:40px; font-size:18px; font-weight:300;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text);
+  transition: background 0.15s var(--ease);
+}
+.qty-btn:hover { background:var(--gold-2); }
+.qty-btn:active { transform:scale(.88); }
+.qty-num {
+  min-width:38px; text-align:center;
+  font-family:var(--serif); font-size:1.15rem; font-weight:500;
+  border-left:1px solid var(--border); border-right:1px solid var(--border);
+  line-height:40px; color:var(--text);
+  transition: border-color var(--tt) var(--ease), color var(--tt) var(--ease);
+}
+
+/* ═══════════════════════════════════════════
+   PAYMENT METHOD
+═══════════════════════════════════════════ */
+.pay-options { display:flex; flex-direction:column; gap:10px; }
+
+.pay-opt { position:relative; cursor:pointer; display:block; }
+.pay-opt input[type="radio"] { position:absolute; opacity:0; width:0; height:0; }
+
+.pay-inner {
+  display:flex; align-items:center; gap:14px;
+  padding:14px 16px;
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  background:var(--surface-2);
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+.pay-opt input:checked + .pay-inner {
+  border-color:var(--gold);
+  background:var(--gold-2);
+}
+.pay-icon {
+  width:40px; height:40px; border-radius:10px;
+  background:var(--gold-3);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; color:var(--gold);
+  transition: background var(--tt) var(--ease);
+}
+.pay-opt input:checked + .pay-inner .pay-icon { background:var(--gold-2); }
+
+.pay-info { flex:1; }
+.pay-name { font-size:14px; font-weight:600; color:var(--text); margin-bottom:2px; }
+.pay-desc { font-size:12px; color:var(--text-2); line-height:1.4; }
+
+.pay-radio-ring {
+  position:absolute; right:16px; top:50%; transform:translateY(-50%);
+  width:18px; height:18px; border-radius:50%;
+  border:1.5px solid var(--border-2);
+  display:flex; align-items:center; justify-content:center;
+  transition: border-color 0.2s var(--ease);
+}
+.pay-radio-ring::after {
+  content:''; width:8px; height:8px; border-radius:50%;
+  background:var(--gold); opacity:0;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--spring);
+  transform:scale(.4);
+}
+.pay-opt input:checked ~ .pay-radio-ring { border-color:var(--gold); }
+.pay-opt input:checked ~ .pay-radio-ring::after { opacity:1; transform:scale(1); }
+
+/* ═══════════════════════════════════════════
+   FORM FIELDS
+═══════════════════════════════════════════ */
+.f-fields { display:flex; flex-direction:column; gap:16px; }
+.f-row { display:grid; grid-template-columns:1fr; gap:16px; }
+
+.f-group { display:flex; flex-direction:column; gap:6px; }
+.f-label {
+  font-size:10px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--text-2); transition:color var(--tt) var(--ease);
+}
+.f-label .req { color:var(--error); margin-left:2px; }
+.f-hint { font-size:11px; color:var(--text-3); font-style:italic; }
+
+.f-input, .f-select, .f-textarea {
+  background:var(--surface-2);
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  color:var(--text);
+  font-family:var(--sans); font-size:15px;
+  padding:13px 15px; width:100%; min-height:50px;
+  -webkit-appearance:none; appearance:none;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease),
+              background var(--tt) var(--ease), color var(--tt) var(--ease);
+}
+.f-input:focus, .f-select:focus, .f-textarea:focus {
+  outline:none;
+  border-color:var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-2);
+}
+.f-input.err, .f-select.err, .f-textarea.err { border-color:var(--error); }
+.f-input::placeholder, .f-textarea::placeholder { color:var(--text-3); }
+.f-textarea { resize:vertical; min-height:88px; }
+.f-select { cursor:pointer; }
+.f-select option { background:var(--surface); }
+
+.f-err {
+  font-size:11px; color:var(--error);
+  display:none; margin-top:2px;
+  animation: errShake 0.35s var(--ease);
+}
+.f-err.on { display:block; }
+@keyframes errShake {
+  0%,100% { transform:translateX(0); }
+  20%,60%  { transform:translateX(-4px); }
+  40%,80%  { transform:translateX(4px); }
+}
+
+/* ═══════════════════════════════════════════
+   SUBMIT
+═══════════════════════════════════════════ */
+.btn-proceed {
+  width:100%;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  padding:17px 28px;
+  border-radius:var(--pill);
+  background:var(--text); color:var(--bg);
+  font-family:var(--sans); font-size:13px; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase;
+  border:1.5px solid var(--text);
+  cursor:pointer; min-height:54px;
+  transition: background 0.25s var(--ease), color 0.25s var(--ease),
+              border-color 0.25s var(--ease), transform 0.15s var(--ease);
+  position:relative; overflow:hidden;
+  margin-top:8px;
+}
+.btn-proceed::after {
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(105deg, transparent 38%, rgba(255,255,255,0.1) 50%, transparent 62%);
+  transform:translateX(-100%);
+  transition:transform 0.55s var(--ease);
+}
+.btn-proceed:hover::after { transform:translateX(100%); }
+.btn-proceed:hover { background:var(--gold); border-color:var(--gold); color:#fff; }
+.btn-proceed:active { transform:scale(.97); }
+.btn-proceed:disabled { opacity:.65; cursor:not-allowed; }
+
+.proceed-note {
+  text-align:center; font-size:12px; color:var(--text-3);
+  line-height:1.55; margin-top:10px;
+  transition: color var(--tt) var(--ease);
+}
+
+/* ═══════════════════════════════════════════
+   ORDER SUMMARY (right col)
+═══════════════════════════════════════════ */
+.sum-lines { display:flex; flex-direction:column; gap:11px; margin-bottom:16px; }
+.sum-line {
+  display:flex; justify-content:space-between; align-items:center;
+  font-size:14px; color:var(--text-2); gap:8px;
+  transition: color var(--tt) var(--ease);
+}
+.sum-line .sv { font-weight:600; color:var(--text); transition:color var(--tt) var(--ease); }
+.sum-total {
+  padding-top:14px; border-top:1px solid var(--border);
+  font-size:15px; font-weight:600; color:var(--text);
+  transition: border-color var(--tt) var(--ease);
+}
+.sum-total .sv {
+  font-family:var(--serif); font-size:1.5rem; color:var(--gold);
+  transition: color var(--tt) var(--ease);
+}
+.sum-note {
+  display:flex; align-items:flex-start; gap:8px;
+  padding:13px; border-radius:8px;
+  font-size:13px; color:var(--text-2); line-height:1.55;
+  background:var(--gold-2); border:1px solid var(--border-2);
+  transition: background var(--tt) var(--ease), border-color var(--tt) var(--ease), color var(--tt) var(--ease);
+}
+.sum-note svg { color:var(--gold); flex-shrink:0; margin-top:1px; }
+.sum-note strong { color:var(--text); font-weight:600; }
+
+/* How it works */
+.how-card {
+  background:var(--gold-2);
+  border:1px solid var(--border-2);
+  border-radius:var(--card);
+  padding:22px;
+  animation: fadeUp 0.65s 0.28s var(--ease) both;
+  transition: background var(--tt) var(--ease), border-color var(--tt) var(--ease);
+}
+.how-title {
+  font-family:var(--serif); font-size:1.1rem; font-weight:500;
+  color:var(--gold); margin-bottom:16px;
+  display:flex; align-items:center; gap:8px;
+  transition: color var(--tt) var(--ease);
+}
+.how-steps { display:flex; flex-direction:column; gap:13px; }
+.how-step { display:flex; align-items:flex-start; gap:11px; }
+.how-num {
+  width:24px; height:24px; border-radius:50%;
+  background:var(--gold); color:#fff;
+  font-size:11px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:1px;
+}
+.how-text { font-size:14px; color:var(--text-2); line-height:1.55; transition:color var(--tt) var(--ease); }
+.how-text strong { color:var(--text); font-weight:600; transition:color var(--tt) var(--ease); }
+
+/* ═══════════════════════════════════════════
+   SUCCESS OVERLAY
+═══════════════════════════════════════════ */
+.success-overlay {
+  position:fixed; inset:0; z-index:2000;
+  display:flex; align-items:center; justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  opacity:0; pointer-events:none;
+  transition:opacity 0.4s var(--ease);
+}
+.success-overlay.on { opacity:1; pointer-events:all; }
+
+.success-card {
+  background:var(--surface);
+  border:1px solid var(--border-2);
+  border-radius:var(--card);
+  padding:clamp(32px,6vw,52px);
+  max-width:440px; width:100%;
+  text-align:center;
+  box-shadow:0 24px 64px var(--shadow-lg);
+  transform:scale(.9) translateY(20px);
+  transition:transform 0.4s var(--spring), background var(--tt) var(--ease), border-color var(--tt) var(--ease);
+}
+.success-overlay.on .success-card { transform:scale(1) translateY(0); }
+
+.success-icon {
+  width:72px; height:72px; border-radius:50%;
+  margin:0 auto 20px;
+  background:rgba(37,211,102,.1);
+  border:1.5px solid rgba(37,211,102,.3);
+  display:flex; align-items:center; justify-content:center;
+  color:#25D366;
+  animation:popIn 0.5s 0.2s var(--spring) both;
+}
+@keyframes popIn { from { transform:scale(0); opacity:0; } to { transform:scale(1); opacity:1; } }
+
+.success-title {
+  font-family:var(--serif);
+  font-size:clamp(1.6rem,4vw,2.1rem);
+  font-weight:400; margin-bottom:10px;
+}
+.success-body {
+  font-size:15px; color:var(--text-2);
+  line-height:1.65; margin-bottom:20px;
+}
+.success-divider { height:1px; background:var(--border); margin:20px 0; }
+.success-sub { font-size:13px; color:var(--text-3); margin-bottom:18px; }
+
+.btn-wa {
+  width:100%;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  padding:16px 24px; border-radius:var(--pill);
+  background:#25D366; color:#fff;
+  font-family:var(--sans); font-size:13px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase;
+  border:none; cursor:pointer; min-height:52px;
+  transition:background 0.2s var(--ease), transform 0.15s var(--ease);
+  margin-bottom:10px;
+}
+.btn-wa:hover { background:#1bad52; }
+.btn-wa:active { transform:scale(.97); }
+
+.btn-back-order {
+  width:100%;
+  display:flex; align-items:center; justify-content:center;
+  padding:12px 24px; border-radius:var(--pill);
+  background:transparent;
+  border:1px solid var(--border-2);
+  color:var(--text-2);
+  font-family:var(--sans); font-size:12px; font-weight:500;
+  letter-spacing:.06em; text-transform:uppercase;
+  cursor:pointer; min-height:44px;
+  transition:border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
+}
+.btn-back-order:hover { border-color:var(--text-2); color:var(--text); background:var(--gold-3); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.o-footer {
+  border-top:1px solid var(--border);
+  padding:clamp(28px,5vw,44px) var(--px);
+  max-width:1160px; margin:0 auto;
+  transition:border-color var(--tt) var(--ease);
+}
+.o-footer-inner {
+  display:flex; flex-direction:column; gap:18px;
+}
+.o-footer-top {
+  display:flex; flex-direction:column; gap:16px;
+}
+.o-footer-brand { display:flex; flex-direction:column; gap:10px; }
+.o-footer-desc { font-size:13px; color:var(--text-2); max-width:240px; line-height:1.6; }
+.o-footer-links { display:flex; flex-wrap:wrap; gap:8px 18px; }
+.o-footer-link { font-size:13px; color:var(--text-2); transition:color 0.2s var(--ease); }
+.o-footer-link:hover { color:var(--gold); }
+.o-footer-bottom {
+  border-top:1px solid var(--border); padding-top:16px;
+  display:flex; flex-direction:column; gap:4px; text-align:center;
+  transition:border-color var(--tt) var(--ease);
+}
+.o-footer-copy { font-size:12px; color:var(--text-3); }
+
+/* ═══════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   LIGHT MODE POLISH
+═══════════════════════════════════════════ */
+[data-theme="light"] .o-card,
+[data-theme="light"] .how-card { box-shadow:0 2px 16px var(--shadow); }
+[data-theme="light"] .btn-proceed {
+  background:#1c1612; border-color:#1c1612; color:#faf8f5;
+}
+[data-theme="light"] .btn-proceed:hover { background:var(--gold); border-color:var(--gold); color:#fff; }
+[data-theme="light"] .o-logo-mark { background:var(--gold); color:#fff; }
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (min-width:560px) {
+  .f-row { grid-template-columns:1fr 1fr; }
+  .pkg-img { width:88px; height:108px; }
+  .pkg-inner { grid-template-columns:88px 1fr; }
+}
+@media (min-width:768px) {
+  :root { --px:32px; }
+  .o-nav-secure { display:flex; }
+  .o-footer-top { flex-direction:row; justify-content:space-between; align-items:flex-start; }
+  .o-footer-bottom { flex-direction:row; justify-content:space-between; text-align:left; }
+}
+@media (min-width:960px) {
+  :root { --px:40px; }
+  .o-layout { grid-template-columns:1fr 360px; }
+}
+@media (min-width:1100px) { :root { --px:48px; } }
+
+:focus-visible { outline:2px solid var(--gold); outline-offset:3px; border-radius:4px; }
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- THEME SWITCHER -->
+  <div class="theme-switcher" id="th-sw" role="group" aria-label="Choose colour theme">
+    <button class="th-btn" data-t="dark"  aria-label="Dark mode"  title="Dark"><span class="th-dot"></span></button>
+    <button class="th-btn on" data-t="light" aria-label="Light mode" title="Light"><span class="th-dot"></span></button>
+    <button class="th-btn" data-t="warm"  aria-label="Warm mode"  title="Warm"><span class="th-dot"></span></button>
+  </div>
+
+  <!-- NAV -->
+  <nav class="o-nav" aria-label="Order page navigation">
+    <div class="o-nav-inner">
+      <a href="index.html" class="o-logo" aria-label="AG Mystique — Home">
+        <span class="o-logo-mark">AG</span>
+        <span class="o-logo-text">
+          <span class="o-logo-main">Mystique</span>
+          <span class="o-logo-sub">Hair Solutions</span>
+        </span>
+      </a>
+      <span class="o-nav-secure" aria-label="Pay on delivery or bank transfer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="14" height="14" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Pay on Delivery or Bank Transfer
+      </span>
+      <a href="index.html" class="o-nav-back" aria-label="Back to home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Home
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="o-page">
+
+      <!-- PAGE HEADER -->
+      <div class="o-header">
+        <p class="o-eyebrow">Secure Order</p>
+        <h1 class="o-title">Place Your <em>Order</em></h1>
+        <p class="o-sub">Fill in your details and we'll deliver to your door. You pay only when it arrives.</p>
+      </div>
+
+      <!-- TRUST BAR -->
+      <div class="trust-bar" role="list">
+        <span class="trust-pill" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Pay on Delivery
+        </span>
+        <span class="trust-pill" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4a2 2 0 012 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-2"/><circle cx="11.5" cy="18.5" r="1.5"/><circle cx="20.5" cy="18.5" r="1.5"/></svg>
+          Arrives in 1–9 Days
+        </span>
+        <span class="trust-pill" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          100% Natural
+        </span>
+        <span class="trust-pill" role="listitem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          2,400+ Customers
+        </span>
+      </div>
+
+      <!-- ORDER GRID -->
+      <div class="o-layout">
+
+        <!-- ── LEFT: ALL STEPS ── -->
+        <div class="o-left">
+
+          <!-- STEP 1: PACKAGE -->
+          <div class="o-card" style="margin-bottom:20px;">
+            <div class="o-card-head">
+              <span class="step-badge">1</span>
+              <h2 class="o-card-title">Choose Your Package</h2>
+            </div>
+            <div class="o-card-body">
+              <div class="pkg-options" role="radiogroup" aria-label="Select a package">
+
+                <label class="pkg-opt">
+                  <input type="radio" name="pkg" value="1b" data-price="18000" data-label="AG Mystique Hair Oil — 1 Bottle"/>
+                  <div class="pkg-inner">
+                    <div class="pkg-img">
+                      <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=200&q=80&auto=format&fit=crop" alt="1 Bottle" loading="lazy"/>
+                    </div>
+                    <div class="pkg-details">
+                      <div class="pkg-name">1 Bottle</div>
+                      <div class="pkg-desc">AG Mystique Original — 60ml. Complete 30-day first treatment.</div>
+                      <div class="pkg-tags">
+                        <span class="pkg-tag tag-info">1-Month Supply</span>
+                        <span class="pkg-tag tag-info">60ml</span>
+                      </div>
+                      <div class="pkg-price-row">
+                        <span class="pkg-price">₦18,000</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pkg-ring" aria-hidden="true"></div>
+                </label>
+
+                <label class="pkg-opt">
+                  <input type="radio" name="pkg" value="2b" data-price="30000" data-label="AG Mystique Hair Oil — 2 Bottles Bundle" checked/>
+                  <div class="pkg-inner">
+                    <div class="pkg-img">
+                      <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=200&q=80&auto=format&fit=crop" alt="2 Bottles Bundle" loading="lazy"/>
+                    </div>
+                    <div class="pkg-details">
+                      <div class="pkg-name">2 Bottles Bundle</div>
+                      <div class="pkg-desc">Best value — 60-day supply. Free delivery across Nigeria.</div>
+                      <div class="pkg-tags">
+                        <span class="pkg-tag tag-pop">Most Popular</span>
+                        <span class="pkg-tag tag-save">Save ₦6,000</span>
+                        <span class="pkg-tag tag-info">Free Delivery</span>
+                      </div>
+                      <div class="pkg-price-row">
+                        <span class="pkg-price">₦30,000</span>
+                        <span class="pkg-was">₦36,000</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="pkg-ring" aria-hidden="true"></div>
+                </label>
+
+              </div>
+
+              <!-- QUANTITY -->
+              <div class="qty-row">
+                <span class="qty-label">Quantity</span>
+                <div class="qty-ctrl" role="group" aria-label="Quantity">
+                  <button class="qty-btn" id="qty-minus" aria-label="Decrease">&#8722;</button>
+                  <span class="qty-num" id="qty-num" aria-live="polite">1</span>
+                  <button class="qty-btn" id="qty-plus"  aria-label="Increase">&#43;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: PAYMENT METHOD -->
+          <div class="o-card" style="margin-bottom:20px; animation-delay:0.18s;">
+            <div class="o-card-head">
+              <span class="step-badge">2</span>
+              <h2 class="o-card-title">Payment Method</h2>
+            </div>
+            <div class="o-card-body">
+              <div class="pay-options" role="radiogroup" aria-label="Select payment method">
+
+                <label class="pay-opt">
+                  <input type="radio" name="pay" value="cod" checked/>
+                  <div class="pay-inner">
+                    <span class="pay-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    </span>
+                    <div class="pay-info">
+                      <div class="pay-name">Cash on Delivery</div>
+                      <div class="pay-desc">Pay the delivery agent cash when your order arrives.</div>
+                    </div>
+                  </div>
+                  <div class="pay-radio-ring" aria-hidden="true"></div>
+                </label>
+
+                <label class="pay-opt">
+                  <input type="radio" name="pay" value="bank"/>
+                  <div class="pay-inner">
+                    <span class="pay-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="20" height="20"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </span>
+                    <div class="pay-info">
+                      <div class="pay-name">Bank Transfer</div>
+                      <div class="pay-desc">Transfer to our account before delivery. Details sent on WhatsApp.</div>
+                    </div>
+                  </div>
+                  <div class="pay-radio-ring" aria-hidden="true"></div>
+                </label>
+
+                <label class="pay-opt">
+                  <input type="radio" name="pay" value="whatsapp"/>
+                  <div class="pay-inner">
+                    <span class="pay-icon">
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    </span>
+                    <div class="pay-info">
+                      <div class="pay-name">Arrange via WhatsApp</div>
+                      <div class="pay-desc">Discuss payment directly with our team on WhatsApp.</div>
+                    </div>
+                  </div>
+                  <div class="pay-radio-ring" aria-hidden="true"></div>
+                </label>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: DELIVERY DETAILS -->
+          <div class="o-card" style="animation-delay:0.22s;">
+            <div class="o-card-head">
+              <span class="step-badge">3</span>
+              <h2 class="o-card-title">Delivery Details</h2>
+            </div>
+            <div class="o-card-body">
+              <div class="f-fields">
+
+                <div class="f-row">
+                  <div class="f-group">
+                    <label class="f-label" for="f-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                    <input type="text" id="f-name" class="f-input" placeholder="e.g. Chioma Okafor" autocomplete="name"/>
+                    <span class="f-err" id="e-name">Please enter your full name.</span>
+                  </div>
+                  <div class="f-group">
+                    <label class="f-label" for="f-phone">Phone Number <span class="req" aria-hidden="true">*</span></label>
+                    <input type="tel" id="f-phone" class="f-input" placeholder="e.g. 08012345678" autocomplete="tel" inputmode="tel"/>
+                    <span class="f-err" id="e-phone">Enter a valid Nigerian number.</span>
+                  </div>
+                </div>
+
+                <div class="f-row">
+                  <div class="f-group">
+                    <label class="f-label" for="f-state">State <span class="req" aria-hidden="true">*</span></label>
+                    <select id="f-state" class="f-select">
+                      <option value="" disabled selected>Select state</option>
+                      <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option>
+                      <option>Anambra</option><option>Bauchi</option><option>Bayelsa</option>
+                      <option>Benue</option><option>Borno</option><option>Cross River</option>
+                      <option>Delta</option><option>Ebonyi</option><option>Edo</option>
+                      <option>Ekiti</option><option>Enugu</option><option>FCT — Abuja</option>
+                      <option>Gombe</option><option>Imo</option><option>Jigawa</option>
+                      <option>Kaduna</option><option>Kano</option><option>Katsina</option>
+                      <option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+                      <option>Lagos</option><option>Nasarawa</option><option>Niger</option>
+                      <option>Ogun</option><option>Ondo</option><option>Osun</option>
+                      <option>Oyo</option><option>Plateau</option><option>Rivers</option>
+                      <option>Sokoto</option><option>Taraba</option><option>Yobe</option>
+                      <option>Zamfara</option>
+                    </select>
+                    <span class="f-err" id="e-state">Please select your state.</span>
+                  </div>
+                  <div class="f-group">
+                    <label class="f-label" for="f-city">City / Town <span class="req" aria-hidden="true">*</span></label>
+                    <input type="text" id="f-city" class="f-input" placeholder="e.g. Uyo" autocomplete="address-level2"/>
+                    <span class="f-err" id="e-city">Please enter your city or town.</span>
+                  </div>
+                </div>
+
+                <div class="f-group">
+                  <label class="f-label" for="f-bus">Nearest Bus Stop / Landmark <span class="req" aria-hidden="true">*</span></label>
+                  <input type="text" id="f-bus" class="f-input" placeholder="e.g. Ewet Housing Junction"/>
+                  <p class="f-hint">Helps our delivery agent find you quickly.</p>
+                  <span class="f-err" id="e-bus">Please enter a nearby landmark.</span>
+                </div>
+
+                <div class="f-group">
+                  <label class="f-label" for="f-addr">Full Delivery Address <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="f-addr" class="f-textarea" placeholder="House number, street name, estate or area..." autocomplete="street-address"></textarea>
+                  <span class="f-err" id="e-addr">Please enter your full address.</span>
+                </div>
+
+                <div class="f-group">
+                  <label class="f-label" for="f-note">Additional Notes <span style="color:var(--text-3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></label>
+                  <textarea id="f-note" class="f-textarea" style="min-height:68px;" placeholder="Any special instructions for the delivery agent..."></textarea>
+                </div>
+
+                <!-- PROCEED -->
+                <button class="btn-proceed" id="btn-proceed" type="button" aria-label="Proceed — review and send order">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                  Proceed
+                </button>
+                <p class="proceed-note">Your full order details will be sent to our WhatsApp. No payment is collected now.</p>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ── RIGHT: SUMMARY + HOW IT WORKS ── -->
+        <div class="o-right">
+
+          <!-- ORDER SUMMARY -->
+          <div class="o-card" style="margin-bottom:20px;">
+            <div class="o-card-head">
+              <span class="step-badge" style="background:var(--surface-2);color:var(--gold);border:1px solid var(--border-2);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              </span>
+              <h2 class="o-card-title">Order Summary</h2>
+            </div>
+            <div class="o-card-body">
+              <div class="sum-lines">
+                <div class="sum-line">
+                  <span id="s-label">AG Mystique — 2 Bottles Bundle</span>
+                  <span class="sv" id="s-price">₦30,000</span>
+                </div>
+                <div class="sum-line">
+                  <span>Quantity</span>
+                  <span class="sv" id="s-qty">× 1</span>
+                </div>
+                <div class="sum-line">
+                  <span>Delivery</span>
+                  <span class="sv" id="s-del" style="color:#16a34a;">Free</span>
+                </div>
+                <div class="sum-line">
+                  <span>Payment</span>
+                  <span class="sv" id="s-pay">Cash on Delivery</span>
+                </div>
+                <div class="sum-line sum-total">
+                  <span>Total Due</span>
+                  <span class="sv" id="s-total">₦30,000</span>
+                </div>
+              </div>
+              <div class="sum-note" role="note">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>We accept <strong>cash on delivery</strong> and <strong>bank transfer</strong>. Nothing is charged now.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- HOW IT WORKS -->
+          <div class="how-card">
+            <div class="how-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="17" height="17" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4a2 2 0 012 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2v-2"/><circle cx="11.5" cy="18.5" r="1.5"/><circle cx="20.5" cy="18.5" r="1.5"/></svg>
+              How It Works
+            </div>
+            <div class="how-steps">
+              <div class="how-step"><span class="how-num">1</span><p class="how-text"><strong>Fill this form</strong> with your name, phone, and delivery address.</p></div>
+              <div class="how-step"><span class="how-num">2</span><p class="how-text"><strong>Tap Proceed</strong> — your order opens pre-filled on WhatsApp. Just send.</p></div>
+              <div class="how-step"><span class="how-num">3</span><p class="how-text"><strong>We dispatch</strong> your order. It arrives within <strong>1 to 9 days</strong>.</p></div>
+              <div class="how-step"><span class="how-num">4</span><p class="how-text"><strong>Pay on delivery</strong> — cash to our agent, or bank transfer. No upfront cost.</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- SUCCESS OVERLAY -->
+  <div class="success-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="suc-title" aria-hidden="true">
+    <div class="success-card">
+      <div class="success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="success-title" id="suc-title">Order Placed!</h2>
+      <p class="success-body">Your order details are ready. We're opening WhatsApp now so our team can confirm your delivery.</p>
+      <div class="success-divider"></div>
+      <p class="success-sub">WhatsApp didn't open automatically? Tap below.</p>
+      <button class="btn-wa" id="suc-wa" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Open WhatsApp
+      </button>
+      <button class="btn-back-order" id="suc-back" type="button">Go Back to Order Form</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="o-footer" role="contentinfo">
+    <div class="o-footer-inner">
+      <div class="o-footer-top">
+        <div class="o-footer-brand">
+          <a href="index.html" class="o-logo" aria-label="AG Mystique — Home">
+            <span class="o-logo-mark">AG</span>
+            <span class="o-logo-text">
+              <span class="o-logo-main">Mystique</span>
+              <span class="o-logo-sub">Hair Solutions</span>
+            </span>
+          </a>
+          <p class="o-footer-desc">Premium natural hair growth oil from Uyo, Akwa Ibom. Pay on delivery across Nigeria.</p>
+        </div>
+        <div class="o-footer-links">
+          <a href="index.html" class="o-footer-link">Home</a>
+          <a href="index.html#pricing" class="o-footer-link">Pricing</a>
+          <a href="index.html#ingredients" class="o-footer-link">Ingredients</a>
+          <a href="index.html#results" class="o-footer-link">Results</a>
+          <a href="index.html#faq" class="o-footer-link">FAQ</a>
+          <a href="index.html#contact" class="o-footer-link">Contact</a>
+          <a href="tel:09043865300" class="o-footer-link">0904 386 5300</a>
+          <a href="mailto:agmystiquesolutions@gmail.com" class="o-footer-link">agmystiquesolutions@gmail.com</a>
+        </div>
+      </div>
+      <div class="o-footer-bottom">
+        <p class="o-footer-copy">&copy; <span id="footer-yr"></span> AG Mystique Hair Solutions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  'use strict';
+
+  /* ── FOOTER YEAR ── */
+  document.getElementById('footer-yr').textContent = new Date().getFullYear();
+
+  /* ── THEME ── */
+  (function(){
+    const html = document.documentElement;
+    const btns = document.querySelectorAll('.th-btn');
+    const KEY  = 'agm_theme';
+    const saved = localStorage.getItem(KEY) || 'light';
+    apply(saved);
+
+    btns.forEach(b => b.addEventListener('click', () => { apply(b.dataset.t); localStorage.setItem(KEY, b.dataset.t); }));
+
+    function apply(t) {
+      html.setAttribute('data-theme', t);
+      btns.forEach(b => b.classList.toggle('on', b.dataset.t === t));
+    }
+  })();
+
+  /* ── STATE ── */
+  let qty = 1;
+  const PKGS = {
+    '1b': { label:'AG Mystique Hair Oil — 1 Bottle',        price:18000, delivery:'Paid by buyer' },
+    '2b': { label:'AG Mystique Hair Oil — 2 Bottles Bundle', price:30000, delivery:'Free'          }
+  };
+  const PAY_LABELS = { cod:'Cash on Delivery', bank:'Bank Transfer', whatsapp:'Arrange via WhatsApp' };
+
+  /* ── REFS ── */
+  const pkgRadios = document.querySelectorAll('input[name="pkg"]');
+  const payRadios = document.querySelectorAll('input[name="pay"]');
+  const qtyMinus  = document.getElementById('qty-minus');
+  const qtyPlus   = document.getElementById('qty-plus');
+  const qtyNum    = document.getElementById('qty-num');
+  const sLabel    = document.getElementById('s-label');
+  const sPrice    = document.getElementById('s-price');
+  const sQty      = document.getElementById('s-qty');
+  const sDel      = document.getElementById('s-del');
+  const sPay      = document.getElementById('s-pay');
+  const sTotal    = document.getElementById('s-total');
+  const proceedBtn= document.getElementById('btn-proceed');
+  const overlay   = document.getElementById('success-overlay');
+  const sucWaBtn  = document.getElementById('suc-wa');
+  const sucBack   = document.getElementById('suc-back');
+
+  /* ── HELPERS ── */
+  const fmt = n => '₦' + n.toLocaleString('en-NG');
+  function getPkg() {
+    let v = '2b';
+    pkgRadios.forEach(r => { if (r.checked) v = r.value; });
+    return PKGS[v];
+  }
+  function getPay() {
+    let v = 'cod';
+    payRadios.forEach(r => { if (r.checked) v = r.value; });
+    return v;
+  }
+
+  function updateSummary() {
+    const pkg  = getPkg();
+    const pay  = getPay();
+    const total = pkg.price * qty;
+    sLabel.textContent = pkg.label;
+    sPrice.textContent = fmt(pkg.price);
+    sQty.textContent   = '× ' + qty;
+    sDel.textContent   = pkg.delivery;
+    sDel.style.color   = pkg.delivery === 'Free' ? '#16a34a' : '';
+    sPay.textContent   = PAY_LABELS[pay] || pay;
+    sTotal.textContent = fmt(total);
+  }
+
+  pkgRadios.forEach(r => r.addEventListener('change', updateSummary));
+  payRadios.forEach(r => r.addEventListener('change', updateSummary));
+  updateSummary();
+
+  /* ── QUANTITY ── */
+  qtyMinus.addEventListener('click', () => { if (qty > 1)  { qty--; qtyNum.textContent = qty; updateSummary(); } });
+  qtyPlus.addEventListener('click',  () => { if (qty < 10) { qty++; qtyNum.textContent = qty; updateSummary(); } });
+
+  /* ── VALIDATION ── */
+  const FIELDS = [
+    { id:'f-name',  eid:'e-name',  ok: v => v.trim().length >= 2 },
+    { id:'f-phone', eid:'e-phone', ok: v => /^[0-9]{10,11}$/.test(v.replace(/\s/g,'')) },
+    { id:'f-state', eid:'e-state', ok: v => v !== '' },
+    { id:'f-city',  eid:'e-city',  ok: v => v.trim().length >= 2 },
+    { id:'f-bus',   eid:'e-bus',   ok: v => v.trim().length >= 3 },
+    { id:'f-addr',  eid:'e-addr',  ok: v => v.trim().length >= 6 }
+  ];
+
+  FIELDS.forEach(f => {
+    const el  = document.getElementById(f.id);
+    const err = document.getElementById(f.eid);
+    const clear = () => { el.classList.remove('err'); err.classList.remove('on'); };
+    el.addEventListener('input', clear);
+    el.addEventListener('change', clear);
+  });
+
+  function validate() {
+    let ok = true;
+    FIELDS.forEach(f => {
+      const el   = document.getElementById(f.id);
+      const err  = document.getElementById(f.eid);
+      const pass = f.ok(el.value);
+      el.classList.toggle('err', !pass);
+      err.classList.toggle('on', !pass);
+      if (!pass) ok = false;
+    });
+    return ok;
+  }
+
+  /* ── WHATSAPP URL builder ── */
+  let waUrl = '';
+
+  function buildMessage() {
+    const pkg   = getPkg();
+    const pay   = PAY_LABELS[getPay()] || getPay();
+    const name  = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const state = document.getElementById('f-state').value;
+    const city  = document.getElementById('f-city').value.trim();
+    const bus   = document.getElementById('f-bus').value.trim();
+    const addr  = document.getElementById('f-addr').value.trim();
+    const note  = document.getElementById('f-note').value.trim();
+    const total = pkg.price * qty;
+
+    const lines = [
+      `Hello! I would like to place an order for AG Mystique Hair Solutions.`,
+      ``,
+      `*ORDER DETAILS*`,
+      `Product: ${pkg.label}`,
+      `Quantity: ${qty}`,
+      `Unit Price: ${fmt(pkg.price)}`,
+      `Total: ${fmt(total)}`,
+      `Payment: ${pay}`,
+      `Delivery: ${pkg.delivery}`,
+      ``,
+      `*DELIVERY DETAILS*`,
+      `Name: ${name}`,
+      `Phone: ${phone}`,
+      `State: ${state}`,
+      `City: ${city}`,
+      `Nearest Bus Stop / Landmark: ${bus}`,
+      `Address: ${addr}`,
+      note ? `Notes: ${note}` : null,
+      ``,
+      `Please confirm my order. I will pay on delivery or via bank transfer as arranged. Thank you.`
+    ].filter(l => l !== null).join('\n');
+
+    return `https://wa.me/2349043865300?text=${encodeURIComponent(lines.trim())}`;
+  }
+
+  /* ── PROCEED ── */
+  proceedBtn.addEventListener('click', () => {
+    if (!validate()) {
+      const first = document.querySelector('.f-input.err, .f-select.err, .f-textarea.err');
+      if (first) first.scrollIntoView({ behavior:'smooth', block:'center' });
+      return;
+    }
+
+    waUrl = buildMessage();
+
+    /* Show success overlay */
+    overlay.classList.add('on');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('locked');
+
+    /* Auto-open WhatsApp after short delay */
+    setTimeout(() => { window.open(waUrl, '_blank', 'noopener,noreferrer'); }, 1800);
+  });
+
+  /* ── SUCCESS OVERLAY BUTTONS ── */
+  sucWaBtn.addEventListener('click', () => { window.open(waUrl, '_blank', 'noopener,noreferrer'); });
+
+  sucBack.addEventListener('click', () => {
+    overlay.classList.remove('on');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('locked');
+  });
+
+  /* Close on backdrop click */
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) {
+      overlay.classList.remove('on');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('locked');
+    }
+  });
+
+  /* Escape key */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('on')) {
+      overlay.classList.remove('on');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('locked');
+    }
+  });
+  </script>
+</body>
+</html>

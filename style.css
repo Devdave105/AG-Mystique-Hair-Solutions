@@ -938,6 +938,162 @@ a.contact-row:hover { color: var(--gold); }
 .float-top { bottom: 76px; background: var(--surface); color: var(--text); border: 1px solid var(--border); transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), background var(--t-theme) var(--ease), border-color var(--t-theme) var(--ease); }
 .float-top:hover { border-color: var(--border-2); }
 
+/* ── COMMUNITY VIDEO BACKGROUND ── */
+.community-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(64px,10vw,120px) 0;
+}
+.comm-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.comm-veil {
+  position: absolute;
+  inset: 0; z-index: 1;
+  background: linear-gradient(135deg, rgba(8,6,4,0.85) 0%, rgba(8,6,4,0.68) 100%);
+}
+.comm-content { position: relative; z-index: 2; }
+
+.comm-vid-controls {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  z-index: 10;
+  display: flex; gap: 8px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+/* On desktop only — hide until hover */
+@media (min-width: 1024px) {
+  .comm-vid-controls {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  .community-section:hover .comm-vid-controls,
+  .community-section:focus-within .comm-vid-controls {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.vid-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+  min-height: 40px;
+}
+.vid-btn:hover  { background: rgba(255,255,255,0.24); transform: scale(1.1); }
+.vid-btn:active { transform: scale(0.92); }
+
+/* Community cards on video */
+.community-section .comm-form-card {
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-color: rgba(255,255,255,0.14);
+}
+.community-section .comm-form-title,
+.community-section .comm-form-sub,
+.community-section .form-label { color: rgba(255,255,255,0.88); }
+.community-section .form-input,
+.community-section .form-textarea {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.16);
+  color: #fff;
+}
+.community-section .form-input::placeholder,
+.community-section .form-textarea::placeholder { color: rgba(255,255,255,0.36); }
+.community-section .form-input:focus,
+.community-section .form-textarea:focus { border-color: var(--gold); background: rgba(255,255,255,0.1); }
+.community-section .r-success { color: #4ade80; }
+.community-section .review-item {
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(255,255,255,0.12);
+}
+.community-section .rev-name  { color: #fff; }
+.community-section .rev-date,
+.community-section .rev-text  { color: rgba(255,255,255,0.62); }
+.community-section .no-reviews { color: rgba(255,255,255,0.38); }
+.community-section .btn-fill {
+  background: var(--gold); border-color: var(--gold); color: #fff;
+}
+.community-section .btn-fill:hover { background: #d4a55a; border-color: #d4a55a; }
+
+/* ── PRICING ANIMATION ── */
+.pricing-grid--2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 48px;
+  perspective: 1200px;
+}
+
+.price-card--anim {
+  position: relative; overflow: hidden;
+  transition: transform 0.4s var(--spring), box-shadow 0.4s ease, border-color 0.3s ease;
+}
+.price-card--anim:hover { transform: translateY(-8px) scale(1.015); box-shadow: 0 24px 56px var(--shadow-lg); }
+.price-card--hero.price-card--anim:hover { box-shadow: 0 24px 64px rgba(200,168,107,0.2); }
+
+.price-glow {
+  position: absolute; width: 240px; height: 240px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,168,107,0.07) 0%, transparent 70%);
+  top: -80px; right: -80px;
+  pointer-events: none; opacity: 0;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+}
+.price-glow--gold { background: radial-gradient(circle, rgba(200,168,107,0.14) 0%, transparent 70%); width: 320px; height: 320px; }
+.price-card--anim:hover .price-glow { opacity: 1; transform: scale(1.25); }
+
+/* Feature list staggered reveal */
+.price-card--anim .price-features li {
+  opacity: 0; transform: translateX(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.price-card--anim.in .price-features li:nth-child(1) { opacity:1; transform:translateX(0); transition-delay:0.14s; }
+.price-card--anim.in .price-features li:nth-child(2) { opacity:1; transform:translateX(0); transition-delay:0.21s; }
+.price-card--anim.in .price-features li:nth-child(3) { opacity:1; transform:translateX(0); transition-delay:0.28s; }
+.price-card--anim.in .price-features li:nth-child(4) { opacity:1; transform:translateX(0); transition-delay:0.35s; }
+.price-card--anim.in .price-features li:nth-child(5) { opacity:1; transform:translateX(0); transition-delay:0.42s; }
+
+/* Price number pop on hover */
+.price-card--anim .price-val {
+  display: inline-block;
+  transition: transform 0.3s var(--spring), color 0.3s ease;
+}
+.price-card--anim:hover .price-val { transform: scale(1.07); color: var(--gold); }
+
+/* CTA button shimmer on hover */
+.price-btn { position: relative; overflow: hidden; }
+.price-btn::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.14) 50%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+.price-btn:hover::after { transform: translateX(100%); }
+
+/* Countdown seconds pulse */
+.cd-n.pulse { animation: cdPulse 0.18s ease; }
+@keyframes cdPulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.14); color: var(--gold); }
+  100% { transform: scale(1); }
+}
+
 /* ── PROOF COUNTER + FADE ── */
 .proof-n {
   transition: opacity 0.4s ease, color var(--t-theme) var(--ease);
@@ -1021,6 +1177,10 @@ a.contact-row:hover { color: var(--gold); }
 [data-theme="warm"] .btn-fill:hover {
   background: #e8b96a;
   border-color: #e8b96a;
+}
+
+@media (min-width: 600px) {
+  .pricing-grid--2 { grid-template-columns: 1fr 1fr; gap: 24px; }
 }
 
 /* ── RESPONSIVE 768px ── */
